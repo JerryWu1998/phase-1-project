@@ -40,7 +40,7 @@ header {
     align-items:center;
 }
 
-#meme-box {
+#meme-container {
     width: 55%;
     padding: 10px;
     display: flex;
@@ -51,13 +51,13 @@ header {
     border-radius: 15px;
 }
 
-#meme-menu img {
+#meme-container img {
     flex: 0 1 auto;
     height: 150px;
     margin-right: 0.5rem;
     cursor: pointer;
 }
 
-#meme-menu img:hover{
+#meme-container img:hover{
     opacity: 0.75;
 }
