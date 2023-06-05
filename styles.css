@@ -1,0 +1,13 @@
+#meme-menu {
+  display: flex;
+  overflow-x: auto;
+  margin: 1rem 0;
+  max-width: calc(100vw - 2rem);
+}
+
+#meme-menu img {
+  flex: 0 1 auto;
+  height: 150px;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
