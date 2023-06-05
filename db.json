@@ -1,5 +1,5 @@
 {
-  "memes": [
+  "done-memes": [
     {
       "id": 1,
       "name": "Cat Meme",
@@ -11,6 +11,18 @@
       "name": "Drunk Meme",
       "image": "https://media.tenor.com/U8gwt2-KX0gAAAAd/funny-memes.gif",
       "description": "I am not drunk"
+    }
+  ],
+  "memes-creating": [
+    {
+      "id": 1,
+      "name": "Troll Face",
+      "image": "https://indianmemetemplates.com/wp-content/uploads/troll-face.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Are you fu**ing kidding me",
+      "image": "https://indianmemetemplates.com/wp-content/uploads/are-you-fuing-kidding-me-clean-1024x1008.jpg"
     }
   ]
 }
