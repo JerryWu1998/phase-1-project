@@ -1,5 +1,6 @@
 // make fetch request to API, use GET to receive all done memes
-fetch("http://localhost:3000/done-memes")
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:3000/done-memes")
   .then(response => response.json())
   .then(data => {
     // call function to access array
@@ -7,7 +8,7 @@ fetch("http://localhost:3000/done-memes")
     // set default to show first meme
     showDetail(data[0]);
   });
-
+})
 
 // function to access array
 function accessMemes(memeArray) {
