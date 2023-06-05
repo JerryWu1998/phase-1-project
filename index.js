@@ -1,6 +1,5 @@
-
-
-// use "DOMContentLoaded" event listenser load the page, use fetch GET data in db.json
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("")
-})
+fetch('http://localhost:3000/memes')
+    .then(response => response(json))
+    .then(function(data){
+        
+    })
