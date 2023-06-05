@@ -29,10 +29,15 @@ header {
     border-radius: 15px;
 }
 
+#search-input{
+    height: 50px;
+    width: 25%;
+}
+
+
+
 #meme-menu {
     display: flex;
-    overflow-x: auto;
-    overflow-y: auto;
     margin: 1rem 0;
     max-width: calc(100vw - 2rem);
     margin-bottom: 5%;
@@ -41,9 +46,11 @@ header {
 }
 
 #meme-container {
-    width: 55%;
-    padding: 10px;
+    width: 60%;
     display: flex;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding: 10px;
     justify-content: center;
     padding-top: 40px;
     padding-bottom: 40px;
@@ -52,12 +59,15 @@ header {
 }
 
 #meme-container img {
-    flex: 0 1 auto;
+    flex: 1 1 auto;
+    display: flex;
     height: 150px;
     margin-right: 0.5rem;
     cursor: pointer;
+    padding: 5px;
 }
 
 #meme-container img:hover{
     opacity: 0.75;
 }
+
