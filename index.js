@@ -12,7 +12,7 @@ fetch("http://localhost:3000/done-memes")
 // function to access array
 function accessMemes(memeArray) {
   // select the container where to put memes
-  const memeContainer = document.querySelector('#meme-menu');
+  const memeContainer = document.querySelector('#meme-box');
   // iterate through array
   memeArray.forEach((singleMeme) => {
     // create single meme div

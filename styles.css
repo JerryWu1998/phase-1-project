@@ -6,7 +6,7 @@ body{
 }
 
 header {
-    margin-bottom: 50px;
+    margin-bottom: 2%;
     font-size: 40px;
 }
 
@@ -32,12 +32,21 @@ header {
 #meme-menu {
     display: flex;
     overflow-x: auto;
-    overflow-y: scroll;
-    /*margin: 1rem 0;*/
+    overflow-y: auto;
+    margin: 1rem 0;
     max-width: calc(100vw - 2rem);
+    margin-bottom: 5%;
     justify-content: center;
     align-items:center;
+}
+
+#meme-box {
+    width: 55%;
     padding: 10px;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
     border: 10px solid black;
     border-radius: 15px;
 }
