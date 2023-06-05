@@ -23,12 +23,15 @@ header {
 #detail-image{
     display: flex;
     overflow: auto;
-    overflow: auto;
-    margin-bottom: 50px;
+    margin-bottom: 2.5%;
     height: 450px;
     padding: 10px;
     border: 10px solid black;
     border-radius: 15px;
+}
+
+#search-bar {
+    margin-bottom: 2.5%;
 }
 
 #search-input{
@@ -68,7 +71,7 @@ button:hover {
 }
 
 #meme-container {
-  width: 53.5%;
+  width: 52.5%;
   padding: 10px;
   display: flex;
   justify-content: flex-start;
@@ -81,12 +84,11 @@ button:hover {
 }
 
 #meme-container img {
-  flex: 0 0 auto;
-  height: 150px;
-  width: auto;
+  height: 200px;
+  width: 200px;
+  object-fit: fill;
   padding: 5px;
   cursor: pointer;
-  object-fit: contain;
   scroll-snap-align: start;
 }
 
