@@ -45,11 +45,12 @@ function showDetail(singleMemeData) {
 function searchMeme() {
   let searchValue = document.querySelector('#search-input').value;
   let memeItems = document.querySelector('#meme-container').getElementsByTagName("div");
-  console.log(memeItems)
+  console.log(memeItems[0].textContent)
+  console.log(searchValue)
   for (let i = 0; i < memeItems.length; i++) {
     let memeName = memeItems[i].textContent.toLowerCase();
-    
-    if (memeName.indexOf(searchValue.toLowerCase()) > 0) {
+    console.log(memeName)
+    if (memeName.indexOf(searchValue.toLowerCase()) > -1) {
       memeItems[i].style.display = "";
     } else {
       memeItems[i].style.display = "none";
