@@ -41,23 +41,28 @@ header {
 }
 
 #meme-container {
-    width: 55%;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    border: 10px solid black;
-    border-radius: 15px;
+  width: 55%;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border: 10px solid black;
+  border-radius: 15px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
 }
 
 #meme-container img {
-    flex: 0 1 auto;
-    height: 150px;
-    margin-right: 0.5rem;
-    cursor: pointer;
+  flex: 0 0 auto;
+  height: 150px;
+  width: auto;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  object-fit: contain;
+  scroll-snap-align: start;
 }
 
-#meme-container img:hover{
-    opacity: 0.75;
+#meme-container img:hover {
+  opacity: 0.75;
 }
