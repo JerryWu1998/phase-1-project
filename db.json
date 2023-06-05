@@ -2,9 +2,15 @@
   "memes": [
     {
       "id": 1,
-      "name": "Cat Memes",
+      "name": "Cat Meme",
       "image": "https://www.theinterrobang.ca/images/interrobang/030819/B8QC6DAZ9PWRK7M2.jpg",
-      "description": "The History of MEMES"
+      "description": "The history of memes"
+    },
+    {
+      "id": 2,
+      "name": "Drunk Meme",
+      "image": "https://media.tenor.com/U8gwt2-KX0gAAAAd/funny-memes.gif",
+      "description": "I am not drunk"
     }
   ]
 }
