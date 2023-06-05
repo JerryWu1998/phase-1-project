@@ -26,7 +26,7 @@
   <!-- The search bar -->
   <div id="search-bar">
     <input type="text" id="search-input" placeholder="search meme" />
-    <button onclick="searchMeme()">search</button>
+    <button onclick="searchMeme()">Search</button>
   </div>
 
   <!-- The meme container -->
@@ -36,15 +36,15 @@
   </div>
 
   <!-- Upload a done meme -->
+  <h2 id="add-new-meme">Add New Meme</h2>
   <form id="new-meme">
-    <h4>Add New Meme</h4>
     <label for="name">Name: </label>
-    <input type="text" name="name" id="new-name" />
+    <input id="txt-input" type="text" name="name" id="new-name" placeholder="Add a Name"/>
     <label for="image">Image: </label>
-    <input type="text" name="image" id="new-image" />
+    <input id="txt-input" type="text" name="image" id="new-image" placeholder="Add an Image"/>
     <label for="description">Description: </label>
-    <input type="text" name="description" id="new-description" />
-    <input type="submit" value="Upload" />
+    <input id="txt-input" type="text" name="description" id="new-description" placeholder="Add a Description"/>
+    <input id="submit-button" type="submit" value="Upload" />
   </form>
 
 
