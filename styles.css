@@ -29,7 +29,7 @@ header {
     border-radius: 15px;
 }
 
-#meme-menu {
+#meme-container {
     display: flex;
     overflow-x: auto;
     overflow-y: scroll;
@@ -42,13 +42,13 @@ header {
     border-radius: 15px;
 }
 
-#meme-menu img {
+#meme-container img {
     flex: 0 1 auto;
     height: 150px;
     margin-right: 0.5rem;
     cursor: pointer;
 }
 
-#meme-menu img:hover{
+#meme-container img:hover{
     opacity: 0.75;
 }
