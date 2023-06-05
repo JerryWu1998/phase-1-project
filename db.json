@@ -16,23 +16,28 @@
       "id": 3,
       "name": "Aliens Meme",
       "image": "https://media2.sacurrent.com/sacurrent/imager/u/original/2479890/aliens-guy.jpg",
-      "description": "Must be the aliens" 
+      "description": "Must be the aliens"
     },
     {
       "id": 4,
       "name": "Side-Eye Chloe Meme",
       "image": "https://helios-i.mashable.com/imagery/articles/01Fzl1MROydyq66J8rXDNzr/hero-image.fill.size_1200x1200.v1614267976.png",
-      "description": "Side-Eye" 
+      "description": "Side-Eye"
     },
     {
       "id": 5,
       "name": "Mail Room Charlie Meme",
       "image": "https://static.tvtropes.org/pmwiki/pub/images/6db_3.jpg",
-      "description": "Pepe Silva" 
+      "description": "Pepe Silva"
+    },
+    {
+      "name": "To Meme",
+      "image": "https://www.digitalmomblog.com/wp-content/uploads/2022/10/to-meme-or-not-to-meme.jpeg",
+      "description": "To Meme or not to Meme",
+      "id": 6
     }
   ],
-  
-  "memes-creating": [ 
+  "memes-creating": [
     {
       "id": 1,
       "name": "Troll Face",
