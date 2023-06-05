@@ -12,16 +12,17 @@ fetch("http://localhost:3000/done-memes")
 // function to access array
 function accessMemes(memeArray) {
   // select the container where to put memes
-  const memeContainer = document.querySelector('#meme-menu');
+  const memeContainer = document.querySelector('#meme-container');
   // iterate through array
   memeArray.forEach((singleMeme) => {
     // create single meme div
-    const singleMemeContainer = document.createElement('div');
+    const singleMemeList = document.createElement('div');
     const singleMemeImage = document.createElement('img');
+    singleMemeList.textContent = singleMeme.name;
     singleMemeImage.src = singleMeme.image;
     // append single meme to DOM
-    singleMemeContainer.append(singleMemeImage);
-    memeContainer.append(singleMemeContainer);
+    singleMemeList.append(singleMemeImage);
+    memeContainer.append(singleMemeList);
     // add event listener to each meme (click to show name and big picture)
     singleMemeImage.addEventListener('click', () => {
       showDetail(singleMeme);
@@ -37,4 +38,21 @@ function showDetail(singleMemeData) {
   nameDetail.textContent = singleMemeData.name;
   const imageDetail = document.querySelector('#detail-image');
   imageDetail.src = singleMemeData.image;
+}
+
+
+// function for search bar
+function searchMeme() {
+  let searchValue = document.querySelector('#search-input').value;
+  let memeItems = document.querySelector('#meme-container').getElementsByTagName("div");
+  console.log(memeItems)
+  for (let i = 0; i < memeItems.length; i++) {
+    let memeName = memeItems[i].textContent.toLowerCase();
+    
+    if (memeName.indexOf(searchValue.toLowerCase()) > 0) {
+      memeItems[i].style.display = "";
+    } else {
+      memeItems[i].style.display = "none";
+    }
+  }
 }
