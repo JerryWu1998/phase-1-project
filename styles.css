@@ -22,12 +22,38 @@ header {
 
 #detail-image{
     display: flex;
-    overflow-x: auto;
+    overflow: auto;
+    overflow: auto;
     margin-bottom: 50px;
     height: 450px;
     padding: 10px;
     border: 10px solid black;
     border-radius: 15px;
+}
+
+#search-input{
+    height: 50px;
+    width: 25%;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 20px;
+}
+
+button {
+    background-color:rgb(161, 166, 170);
+    height: 50px;
+    width: 100px;
+    border-radius: 25px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+button:active {
+    transform: translateY(3px);
+}
+
+button:hover {
+    opacity: .75;
 }
 
 #meme-menu {
