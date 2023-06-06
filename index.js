@@ -125,10 +125,14 @@ function draw(face) {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
   let img = new Image();
+  img.src = face.image;
   img.addEventListener("load", ()=>{
-    ctx.drawImage(img, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    var hRatio = canvas.width / img.width;
+    var vRatio = canvas.height / img.height;
+    var ratio  = Math.min ( hRatio, vRatio );
+    ctx.drawImage(img, 0,0, img.width, img.height, 0,0,img.width*ratio, img.height*ratio);
     ctx.font = '50px serif';
     ctx.fillText('Hello world', 50, 90);
   });
-  img.src = face.image;
 }
