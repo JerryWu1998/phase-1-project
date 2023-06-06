@@ -1,6 +1,5 @@
 // use fetch GET to receive all done memes
-loadThePage();
-function loadThePage() {document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   fetch("http://localhost:3000/done-memes")
   .then(response => response.json())
   .then(data => {
@@ -10,7 +9,6 @@ function loadThePage() {document.addEventListener("DOMContentLoaded", () => {
     showDetail(data[0]);
   });
 })
-}
 
 
 // function to access array
@@ -67,19 +65,22 @@ function searchMeme() {
 // upload a new meme with name, url and description
 document.querySelector('#new-meme').addEventListener('submit', (e) => {
   e.preventDefault();
-  const newUploadMeme = {
-    name: e.target.name.value,
-    image: e.target.image.value,
-    description: e.target.description.value
+  if (e.target.image.value === "" || e.target.name.value === "" || e.target.description.value === "") {
+  } else {
+    const newUploadMeme = {
+      name: e.target.name.value,
+      image: e.target.image.value,
+      description: e.target.description.value
+    };
+    // use fetch POST to add new meme in db.json
+    fetch("http://localhost:3000/done-memes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUploadMeme)
+    })
+      // add meme into the page
+      .then(accessMemes([newUploadMeme]));
   }
-  // use fetch POST to add new meme in db.json
-  fetch("http://localhost:3000/done-memes", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newUploadMeme)
-  })
-    // add meme into the page
-    .then(accessMemes([newUploadMeme]));
 })
