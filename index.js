@@ -11,20 +11,20 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 
-// function to access array
+// function to access meme array
 function accessMemes(memeArray) {
   // select the container where to put memes
   const memeContainer = document.querySelector('#meme-container');
   // iterate through array
   memeArray.forEach((singleMeme) => {
     // create single meme div
-    const singleMemeList = document.createElement('div');
+    const singleMemeContainer = document.createElement('div');
     const singleMemeImage = document.createElement('img');
-    singleMemeList.textContent = singleMeme.name;
+    singleMemeContainer.textContent = singleMeme.name;
     singleMemeImage.src = singleMeme.image;
     // append single meme to DOM
-    singleMemeList.append(singleMemeImage);
-    memeContainer.append(singleMemeList);
+    singleMemeContainer.append(singleMemeImage);
+    memeContainer.append(singleMemeContainer);
     // add event listener to each meme (click to show name and big picture)
     singleMemeImage.addEventListener('click', () => {
       showDetail(singleMeme);
@@ -84,3 +84,35 @@ document.querySelector('#new-meme').addEventListener('submit', (e) => {
       .then(accessMemes([newUploadMeme]));
   }
 })
+
+
+// use fetch GET to receive all faces
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:3000/memes-creating")
+  .then(response => response.json())
+  .then(data => {
+    // call function to access array
+    accessFaces(data);
+    // set default to show first meme
+    showDetail(data[0]);
+  });
+})
+
+
+// function to access faces array
+function accessFaces(faceArray) {
+  // select the container where to put faces
+  const faceContainer = document.querySelector('#face-container');
+  // iterate through array
+  faceArray.forEach((singleFace) => {
+    // create single face div
+    const singleFaceContainer = document.createElement('div');
+    const singleFaceImage = document.createElement('img');
+    singleFaceContainer.textContent = singleFace.name;
+    singleFaceImage.src = singleFace.image;
+    // append single face to DOM
+    singleFaceContainer.append(singleFaceImage);
+    faceContainer.append(singleFaceContainer);
+    // add event listener to each meme (click to show name and big picture)
+  });
+}
