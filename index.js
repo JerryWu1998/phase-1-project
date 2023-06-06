@@ -84,3 +84,49 @@ document.querySelector('#new-meme').addEventListener('submit', (e) => {
       .then(accessMemes([newUploadMeme]));
   }
 })
+
+
+
+// use fetch GET to receive all memes-creating
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:3000/memes-creating")
+  .then(response => response.json())
+  .then(data => {
+    // call function to access array
+    accessNewMemes(data);
+    // set default to show first meme
+    showNewDetail(data[0]);
+  });
+})
+
+
+// function to access array
+function accessNewMemes(memeArray) {
+  // select the container where to put memes
+  const memeContainer = document.querySelector('#new-meme-container');
+  // iterate through array
+  memeArray.forEach((singleMeme) => {
+    // create single meme div
+    const singleMemeList = document.createElement('div');
+    const singleMemeImage = document.createElement('img');
+    singleMemeList.textContent = singleMeme.name;
+    singleMemeImage.src = singleMeme.image;
+    // append single meme to DOM
+    singleMemeList.append(singleMemeImage);
+    memeContainer.append(singleMemeList);
+    // add event listener to each meme (click to show name and big picture)
+    singleMemeImage.addEventListener('click', () => {
+      showDetail(singleMeme);
+    })
+  });
+}
+
+
+// after click image, shows detail
+function showNewDetail(singleMemeData) {
+  // update name and image in detail area
+  const nameDetail = document.querySelector('#new-detail-name');
+  nameDetail.textContent = singleMemeData.name;
+  const imageDetail = document.querySelector('#new-detail-image');
+  imageDetail.src = singleMemeData.image;
+}
