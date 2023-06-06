@@ -113,27 +113,30 @@ function accessFaces(faceArray) {
     faceContainer.append(singleFaceContainer);
     // add event listener to each meme (click to show name and big picture)
     singleFaceImage.addEventListener('click', () => {
-      drawFace(singleFace);
+      draw(singleFace);
     })
   });
 };
 
 
-// Draw the image
-function drawFace(face) {
-  // select canvas
+// Draw the image and text
+function draw(face) {
   const canvas = document.querySelector('#canvas');
   const ctx = canvas.getContext('2d');
-  // add face into the canvas when click
   let img = new Image();
   img.src = face.image;
   img.addEventListener("load", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // use ratio to scaling face
     let ratio = Math.min (canvas.width / img.width, canvas.height / img.height);
     ctx.drawImage(img, 0, 0, img.width, img.height, 
       (canvas.width - img.width * ratio) / 2, (canvas.height - img.height * ratio) / 2, 
       img.width * ratio, img.height * ratio);
+<<<<<<< HEAD
+=======
+      ctx.font = '50px impact';
+      ctx.strokeStyle = "black"
+      ctx.lineWidth = 10;
+>>>>>>> a7e08474876374aa617ab9e60b06d64cf68550b5
     // add text into the canvas
     const topText = document.querySelector('#create-meme').topText.value;
     const bottomText = document.querySelector('#create-meme').bottomText.value;
