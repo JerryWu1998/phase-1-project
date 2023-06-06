@@ -146,6 +146,5 @@ function draw(face) {
     ctx.lineWidth = 4
     ctx.fillText(topText, 50, 90);
     ctx.fillText(bottomText, 50, 450);
-    console.log(img)
   });
 };
