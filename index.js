@@ -113,25 +113,41 @@ function accessFaces(faceArray) {
     faceContainer.append(singleFaceContainer);
     // add event listener to each meme (click to show name and big picture)
     singleFaceImage.addEventListener('click', () => {
-      draw(singleFace);
+      drawFace(singleFace);
     })
   });
 };
 
 
-// Draw the image and text
-function draw(face) {
+// Draw the image
+function drawFace(face) {
+  // select canvas
   const canvas = document.querySelector('#canvas');
   const ctx = canvas.getContext('2d');
+  // add face into the canvas when click
   let img = new Image();
   img.src = face.image;
   img.addEventListener("load", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // use ratio to scaling face
     let ratio = Math.min (canvas.width / img.width, canvas.height / img.height);
     ctx.drawImage(img, 0, 0, img.width, img.height, 
-      (canvas.width - img.width*ratio) / 2, (canvas.height - img.height*ratio) / 2, 
+      (canvas.width - img.width * ratio) / 2, (canvas.height - img.height * ratio) / 2, 
       img.width * ratio, img.height * ratio);
     ctx.font = '50px serif';
-    ctx.fillText('Hello world', 50, 90);
+    // add text into the canvas
+    const topText = document.querySelector('#create-meme').topText.value;
+    const bottomText = document.querySelector('#create-meme').bottomText.value;
+    ctx.fillText(topText, 50, 90);
+    ctx.fillText(bottomText, 50, 450);
   });
 };
+
+
+
+// use fetch POST to add new creating meme in db.json
+document.querySelector('#create-meme').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+})
+
