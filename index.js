@@ -33,7 +33,7 @@ function accessMemes(memeArray) {
 }
 
 
-// after click image, shows detail
+// after click meme, shows detail
 function showDetail(singleMemeData) {
   // update name and image in detail area
   const nameDetail = document.querySelector('#detail-name');
@@ -93,8 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
   .then(data => {
     // call function to access array
     accessFaces(data);
-    // set default to show first meme
-    showDetail(data[0]);
+    // set default to show first face
   });
 })
 
@@ -115,4 +114,14 @@ function accessFaces(faceArray) {
     faceContainer.append(singleFaceContainer);
     // add event listener to each meme (click to show name and big picture)
   });
+}
+
+
+// after click face, shows detail
+function showDetail(singleMemeData) {
+  // update name and image in detail area
+  const nameDetail = document.querySelector('#detail-name');
+  nameDetail.textContent = singleMemeData.name;
+  const imageDetail = document.querySelector('#detail-image');
+  imageDetail.src = singleMemeData.image;
 }
