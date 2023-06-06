@@ -134,20 +134,19 @@ function drawFace(face) {
     ctx.drawImage(img, 0, 0, img.width, img.height, 
       (canvas.width - img.width * ratio) / 2, (canvas.height - img.height * ratio) / 2, 
       img.width * ratio, img.height * ratio);
-    ctx.font = '50px serif';
     // add text into the canvas
     const topText = document.querySelector('#create-meme').topText.value;
     const bottomText = document.querySelector('#create-meme').bottomText.value;
+    ctx.font = '50px impact';
     ctx.fillText(topText, 50, 90);
     ctx.fillText(bottomText, 50, 450);
   });
 };
 
 
-
 // use fetch POST to add new creating meme in db.json
 document.querySelector('#create-meme').addEventListener('submit', (e) => {
   e.preventDefault();
-
+  
 })
 
