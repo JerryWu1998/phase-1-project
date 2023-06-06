@@ -146,8 +146,6 @@ function draw(face) {
   });
 };
 
-
-
 // use fetch POST to add new creating meme in db.json
 document.querySelector('#create-meme').addEventListener('submit', (e) => {
   e.preventDefault();
