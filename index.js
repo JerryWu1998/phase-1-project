@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // set default to show first meme
     showDetail(data[0]);
   });
-})
+});
 
 
 // function to access meme array
@@ -30,7 +30,7 @@ function accessMemes(memeArray) {
       showDetail(singleMeme);
     })
   });
-}
+};
 
 
 // after click image, shows detail
@@ -40,7 +40,7 @@ function showDetail(singleMemeData) {
   nameDetail.textContent = singleMemeData.name;
   const imageDetail = document.querySelector('#detail-image');
   imageDetail.src = singleMemeData.image;
-}
+};
 
 
 // function for search bar
@@ -51,15 +51,14 @@ function searchMeme() {
   // use forloop to check if matches
   for (let i = 0; i < memeItems.length; i++) {
     let memeName = memeItems[i].textContent.toLowerCase();
-    console.log(memeName)
     // show meme if there at least one letter match
     if (memeName.indexOf(searchValue.toLowerCase()) > -1) {
       memeItems[i].style.display = "";
     } else {
       memeItems[i].style.display = "none";
-    }
-  }
-}
+    };
+  };
+};
 
 
 // upload a new meme with name, url and description
@@ -82,8 +81,8 @@ document.querySelector('#new-meme').addEventListener('submit', (e) => {
     })
       // add meme into the page
       .then(accessMemes([newUploadMeme]));
-  }
-})
+  };
+});
 
 
 // use fetch GET to receive all faces
@@ -95,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     accessFaces(data);
     // set default to show first face
   });
-})
+});
 
 
 // function to access faces array
@@ -117,22 +116,22 @@ function accessFaces(faceArray) {
       draw(singleFace);
     })
   });
-}
+};
 
 
 // Draw the image and text
 function draw(face) {
-  const canvas = document.getElementById('canvas');
+  const canvas = document.querySelector('#canvas');
   const ctx = canvas.getContext('2d');
   let img = new Image();
   img.src = face.image;
-  img.addEventListener("load", ()=>{
+  img.addEventListener("load", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    var hRatio = canvas.width / img.width;
-    var vRatio = canvas.height / img.height;
-    var ratio  = Math.min ( hRatio, vRatio );
-    ctx.drawImage(img, 0,0, img.width, img.height, 0,0,img.width*ratio, img.height*ratio);
+    let ratio = Math.min (canvas.width / img.width, canvas.height / img.height);
+    ctx.drawImage(img, 0, 0, img.width, img.height, 
+      (canvas.width - img.width*ratio) / 2, (canvas.height - img.height*ratio) / 2, 
+      img.width * ratio, img.height * ratio);
     ctx.font = '50px serif';
     ctx.fillText('Hello world', 50, 90);
   });
-}
+};
