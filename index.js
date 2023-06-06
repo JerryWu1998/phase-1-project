@@ -94,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // call function to access array
     accessFaces(data);
     // set default to show first face
-    showNewDetail(data[0])
   });
 })
 
@@ -115,15 +114,21 @@ function accessFaces(faceArray) {
     faceContainer.append(singleFaceContainer);
     // add event listener to each meme (click to show name and big picture)
     singleFaceImage.addEventListener('click', () => {
-      showNewDetail(singleFace);
+      draw(singleFace);
     })
   });
 }
 
 
-// after click face, shows detail
-function showNewDetail(singleFaceData) {
-  // update name and image in detail area
-  const imageDetail = document.querySelector('#new-detail-image');
-  imageDetail.src = singleFaceData.image;
+// Draw the image and text
+function draw(face) {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  let img = new Image();
+  img.addEventListener("load", ()=>{
+    ctx.drawImage(img, 0, 0);
+    ctx.font = '50px serif';
+    ctx.fillText('Hello world', 50, 90);
+  });
+  img.src = face.image;
 }
