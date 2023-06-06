@@ -84,7 +84,7 @@ button:hover {
   scroll-snap-type: x mandatory;
   display: grid;
   /* puts in grid notation. Starts a new row after every 5. 1fr = spacing*/
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   font-size: 12px;
 }
 
@@ -208,3 +208,12 @@ button:hover {
     font-size: 20px;
 }
 
+#instructions {
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+}
+
+ul {
+    list-style-type: none;
+}

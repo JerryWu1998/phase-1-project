@@ -137,9 +137,6 @@ function draw(face) {
     // add text into the canvas
     const topText = document.querySelector('#create-meme').topText.value;
     const bottomText = document.querySelector('#create-meme').bottomText.value;
-    ctx.font = '50px impact';
-    ctx.strokeStyle = "black"
-    ctx.lineWidth = 10;
     ctx.strokeText(topText, 50, 90);
     ctx.strokeText(bottomText, 50, 450);
     ctx.fillStyle = "white"
