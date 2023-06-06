@@ -119,21 +119,21 @@ function accessFaces(faceArray) {
 };
 
 
+let currentImage;
+
 // Draw the image and text
 function draw(face) {
   const canvas = document.querySelector('#canvas');
   const ctx = canvas.getContext('2d');
   let img = new Image();
   img.src = face.image;
+  currentImage = 
   img.addEventListener("load", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     let ratio = Math.min (canvas.width / img.width, canvas.height / img.height);
     ctx.drawImage(img, 0, 0, img.width, img.height, 
       (canvas.width - img.width * ratio) / 2, (canvas.height - img.height * ratio) / 2, 
       img.width * ratio, img.height * ratio);
-      ctx.font = '50px impact';
-      ctx.strokeStyle = "black"
-      ctx.lineWidth = 10;
     // add text into the canvas
     const topText = document.querySelector('#create-meme').topText.value;
     const bottomText = document.querySelector('#create-meme').bottomText.value;
@@ -143,12 +143,6 @@ function draw(face) {
     ctx.lineWidth = 4
     ctx.fillText(topText, 50, 90);
     ctx.fillText(bottomText, 50, 450);
+    console.log(img)
   });
 };
-
-// use fetch POST to add new creating meme in db.json
-document.querySelector('#create-meme').addEventListener('submit', (e) => {
-  e.preventDefault();
-
-})
-
