@@ -139,11 +139,11 @@ function draw(face) {
     // add text into the canvas
     const topText = document.querySelector('#create-meme').topText.value;
     const bottomText = document.querySelector('#create-meme').bottomText.value;
-    ctx.strokeText(topText, 50, 90);
-    ctx.strokeText(bottomText, 50, 450);
+    ctx.strokeText(topText, 200, 90);
+    ctx.strokeText(bottomText, 200, 450);
     ctx.fillStyle = "white"
     ctx.lineWidth = 4
-    ctx.fillText(topText, 50, 90);
-    ctx.fillText(bottomText, 50, 450);
+    ctx.fillText(topText, 200, 90);
+    ctx.fillText(bottomText, 200, 450);
   });
 };
