@@ -101,7 +101,7 @@ button:hover {
 
 #add-new-meme-title {
     font-size: 40px;
-    margin-top: 8%;
+
 }
 
 #new-meme{
@@ -167,7 +167,8 @@ button:hover {
 }
 
 #new-meme-container {
-    width: 1800px;
+    width: 1300px;
+    height: 450px;
     padding: 10px;
     justify-content: flex-start;
     padding-top: 40px;
@@ -175,10 +176,11 @@ button:hover {
     border: 10px solid black;
     border-radius: 15px;
     overflow-x: auto;
+    overflow-y: scroll;
     scroll-snap-type: x mandatory;
     display: grid;
     /* puts in grid notation. Starts a new row after every 5. 1fr = spacing*/
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     row-gap: 5px;
   }
 

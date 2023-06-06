@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // call function to access array
     accessFaces(data);
     // set default to show first face
+    showNewDetail(data[0])
   });
 })
 
@@ -101,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // function to access faces array
 function accessFaces(faceArray) {
   // select the container where to put faces
-  const faceContainer = document.querySelector('#face-container');
+  const faceContainer = document.querySelector('#new-meme-container');
   // iterate through array
   faceArray.forEach((singleFace) => {
     // create single face div
