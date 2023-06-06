@@ -208,3 +208,12 @@ button:hover {
     font-size: 20px;
 }
 
+#instructions {
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+}
+
+ul {
+    list-style-type: none;
+}
