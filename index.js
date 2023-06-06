@@ -11,20 +11,20 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 
-// function to access array
+// function to access meme array
 function accessMemes(memeArray) {
   // select the container where to put memes
   const memeContainer = document.querySelector('#meme-container');
   // iterate through array
   memeArray.forEach((singleMeme) => {
     // create single meme div
-    const singleMemeList = document.createElement('div');
+    const singleMemeContainer = document.createElement('div');
     const singleMemeImage = document.createElement('img');
-    singleMemeList.textContent = singleMeme.name;
+    singleMemeContainer.textContent = singleMeme.name;
     singleMemeImage.src = singleMeme.image;
     // append single meme to DOM
-    singleMemeList.append(singleMemeImage);
-    memeContainer.append(singleMemeList);
+    singleMemeContainer.append(singleMemeImage);
+    memeContainer.append(singleMemeContainer);
     // add event listener to each meme (click to show name and big picture)
     singleMemeImage.addEventListener('click', () => {
       showDetail(singleMeme);
