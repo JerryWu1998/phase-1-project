@@ -51,12 +51,13 @@
   <div id="create-new-meme">
     <!-- Title of create a meme -->
     <h2 id="create-new-meme-title">Create your own Meme</h2>
-    <!-- Selected meme's name -->
-    <h2 id="new-detail-name">Insert Name Here</h2>
     <!-- Canvas of face and text -->
-    <div onload="draw()">
-      <canvas id="canvas" width="500" height="500"></canvas>
+    <div id="canvas-container">
+      <div onload="draw()">
+        <canvas id="canvas" width="500" height="500"></canvas>
+      </div>
     </div>
+      
     <!-- The face container -->
     <div id="face-container">
       <div id="new-meme-container"></div>
