@@ -1,6 +1,5 @@
 // use fetch GET to receive all done memes
-loadThePage();
-function loadThePage() {document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   fetch("http://localhost:3000/done-memes")
   .then(response => response.json())
   .then(data => {
@@ -10,7 +9,6 @@ function loadThePage() {document.addEventListener("DOMContentLoaded", () => {
     showDetail(data[0]);
   });
 })
-}
 
 
 // function to access array
