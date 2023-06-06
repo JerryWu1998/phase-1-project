@@ -33,7 +33,7 @@ function accessMemes(memeArray) {
 }
 
 
-// after click meme, shows detail
+// after click image, shows detail
 function showDetail(singleMemeData) {
   // update name and image in detail area
   const nameDetail = document.querySelector('#detail-name');
@@ -113,15 +113,16 @@ function accessFaces(faceArray) {
     singleFaceContainer.append(singleFaceImage);
     faceContainer.append(singleFaceContainer);
     // add event listener to each meme (click to show name and big picture)
+    singleFaceImage.addEventListener('click', () => {
+      showNewDetail(singleFace);
+    })
   });
 }
 
 
 // after click face, shows detail
-function showDetail(singleMemeData) {
+function showNewDetail(singleFaceData) {
   // update name and image in detail area
-  const nameDetail = document.querySelector('#detail-name');
-  nameDetail.textContent = singleMemeData.name;
-  const imageDetail = document.querySelector('#detail-image');
-  imageDetail.src = singleMemeData.image;
+  const imageDetail = document.querySelector('#new-detail-image');
+  imageDetail.src = singleFaceData.image;
 }

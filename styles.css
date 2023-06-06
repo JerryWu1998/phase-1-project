@@ -134,3 +134,72 @@ button:hover {
 #submit-button:active {
     transform: translateY(3px);
 }
+
+#create-new-meme-title {
+    font-size: 40px;
+}
+
+#big-face-picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#new-detail-image{
+    display: flex;
+    overflow: auto;
+    margin-bottom: 2.5%;
+    height: 450px;
+    padding: 10px;
+    border: 10px solid black;
+    border-radius: 15px;
+}
+
+#face-container {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: auto;
+    margin: 1rem 0;
+    max-width: calc(100vw - 2rem);
+    margin-bottom: 5%;
+    justify-content: center;
+    align-items:center;
+}
+
+#new-meme-container {
+    width: 1800px;
+    padding: 10px;
+    justify-content: flex-start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border: 10px solid black;
+    border-radius: 15px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: grid;
+    /* puts in grid notation. Starts a new row after every 5. 1fr = spacing*/
+    grid-template-columns: repeat(8, 1fr);
+    row-gap: 5px;
+  }
+
+#new-meme-container img {
+    height: 200px;
+    width: 200px;
+    object-fit: fill;
+    padding: 5px;
+    cursor: pointer;
+    scroll-snap-align: start;
+  }
+
+#new-meme-container img:hover{
+    opacity: .75;
+}
+
+#create-meme {
+    margin-bottom: 8%;
+}
+
+#create-meme label {
+    font-size: 25px;
+}
+
