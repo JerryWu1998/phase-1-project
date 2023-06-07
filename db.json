@@ -52,6 +52,11 @@
   ],
   "memes-creating": [
     {
+      "id": 0,
+      "name": "Placeholder",
+      "image": "./your-meme-here.jpg"
+    },
+    {
       "id": 1,
       "name": "Troll Face",
       "image": "https://indianmemetemplates.com/wp-content/uploads/troll-face.jpg"
@@ -302,6 +307,11 @@
       "id": 2,
       "username": "qqqwww",
       "password": "654321"
+    },
+    {
+      "username": "Alexis",
+      "password": "helloworld",
+      "id": 3
     }
   ]
 }
