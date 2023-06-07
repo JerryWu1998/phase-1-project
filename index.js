@@ -88,7 +88,8 @@ document.querySelector('#new-meme').addEventListener('submit', (e) => {
         body: JSON.stringify(newUploadMeme)
       })
         // add meme into the page
-        .then(accessMemes([newUploadMeme]));
+        .then(accessMemes([newUploadMeme]))
+        .then(window.alert("Add meme successfully."))
     };
   };
 });
@@ -191,7 +192,7 @@ function checkLoginInfo(inputUsername, inputPassword) {
         if (inputUsername === singleUser.username && inputPassword === singleUser.password) {
           // if matched, show the current user info, hide the text bar
           currentUser = inputUsername;
-          document.querySelector('#current-user').textContent = "Current User: " + currentUser;
+          document.querySelector('#log-in-button').textContent = currentUser;
           document.querySelector("#log-in").style.display = "none";
           document.querySelector('#wrong-info').style.display = "none";
           break;
@@ -206,7 +207,12 @@ function checkLoginInfo(inputUsername, inputPassword) {
 
 // Show sign up
 function signUp() {
-
+  if (currentUser !== "") {
+    // pop out message if user already logged in
+    window.alert("You are already logged in. If you want to switch accounts, please log out first.");
+  } else {
+    document.querySelector('#log-in').style.display = "block";
+  }
 }
 
 
@@ -219,7 +225,7 @@ function logOut() {
   } else {
     // clear current user, pop out log out message
     currentUser = "";
-    document.querySelector('#current-user').textContent = "Please log in"
+    document.querySelector('#log-in-button').textContent = "Log in";
     window.alert("You logged out successfully.");
   }
 }
