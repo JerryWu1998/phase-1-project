@@ -1,4 +1,4 @@
-let currentUser;
+let currentUser = "";
 
 
 // use fetch GET to receive all done memes
@@ -154,7 +154,11 @@ function draw(face) {
 
 // Show log in text bar
 function logInShow() {
-  document.querySelector('#log-in').style.display = "block";
+  if (currentUser !== "") {
+    window.alert("You are already logged in. If you want to switch accounts, please log out first.");
+  } else {
+    document.querySelector('#log-in').style.display = "block";
+  }
 }
 
 
@@ -173,11 +177,9 @@ function checkLoginInfo(inputUsername, inputPassword) {
     .then(usersData => {
       // use for loop to go over all users in db.json
       for (singleUser of usersData) {
-
         if (inputUsername === singleUser.username && inputPassword === singleUser.password) {
           // if matched, show the current user info, hide the text bar
           currentUser = inputUsername;
-          document.querySelector('#current-user').style.display = "block";
           document.querySelector('#current-user').textContent = "Current User: " + currentUser;
           document.querySelector("#log-in").style.display = "none";
           document.querySelector('#wrong-info').style.display = "none";
@@ -188,4 +190,12 @@ function checkLoginInfo(inputUsername, inputPassword) {
         }
       }
     })
+}
+
+
+// Log out
+function logOut() {
+  currentUser = "";
+  document.querySelector('#current-user').textContent = "Please log in"
+  window.alert("You logged out successfully.");
 }
