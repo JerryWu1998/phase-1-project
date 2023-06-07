@@ -152,35 +152,40 @@ function draw(face) {
 };
 
 
-// Show log in 
+// Show log in text bar
 function logInShow() {
-  document.querySelector('#log-in').classList.remove("hidden");
+  document.querySelector('#log-in').style.display = "block";
 }
 
 
-// 
+// Add event listener for log in
+document.querySelector('#log-in').addEventListener('submit', (e) => {
+  e.preventDefault();
+  checkLoginInfo(e.target.username.value, e.target.password.value);
+})
 
-fetch("http://localhost:3000/user-list")
-  .then(response => response.json())
-  .then(data => checkLoginInfo(data))
 
+// function that check the username and password
+function checkLoginInfo(inputUsername, inputPassword) {
+  // use fetch GET to receive all users info
+  fetch("http://localhost:3000/user-list")
+    .then(response => response.json())
+    .then(usersData => {
+      // use for loop to go over all users in db.json
+      for (singleUser of usersData) {
 
-//
-function checkLoginInfo(userData) {
-  document.querySelector('#log-in').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const inputUsername = e.target.username.value;
-    const inputPassword = e.target.password.value;
-
-    for (singleUser of userData) {
-      if (inputUsername === singleUser.username && inputPassword === singleUser.password) {
-        currentUser = inputUsername;
-        document.querySelector('#current-user').classList.remove("hidden");
-        document.querySelector('#current-user').textContent = "Current User: " + currentUser;
-        document.querySelector("#log-in").classList.add("hidden");
-        document.querySelector('#wrong-info').classList.add("hidden");
-        break;
+        if (inputUsername === singleUser.username && inputPassword === singleUser.password) {
+          // if matched, show the current user info, hide the text bar
+          currentUser = inputUsername;
+          document.querySelector('#current-user').style.display = "block";
+          document.querySelector('#current-user').textContent = "Current User: " + currentUser;
+          document.querySelector("#log-in").style.display = "none";
+          document.querySelector('#wrong-info').style.display = "none";
+          break;
+        } else {
+          // if doesn't match, show error
+          document.querySelector('#wrong-info').style.display = "block";
+        }
       }
-    }
-  })
+    })
 }

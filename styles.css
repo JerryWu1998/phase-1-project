@@ -241,6 +241,14 @@ ul {
     list-style-type: none;
 }
 
-.hidden {
+#log-in {
+    display: none
+}
+
+#current-user {
+    display: none;
+}
+
+#wrong-info {
     display: none;
 }
