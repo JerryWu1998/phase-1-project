@@ -228,8 +228,6 @@ function logOut() {
 }
 
 
-
-
 // 3D hover effect
 // credit: https://codepen.io/Chokcoco/pen/mdpGXjj
 
