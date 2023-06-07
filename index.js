@@ -1,13 +1,16 @@
+let currentUser;
+
+
 // use fetch GET to receive all done memes
 document.addEventListener("DOMContentLoaded", () => {
   fetch("http://localhost:3000/done-memes")
-  .then(response => response.json())
-  .then(data => {
-    // call function to access array
-    accessMemes(data);
-    // set default to show first meme
-    showDetail(data[0]);
-  });
+    .then(response => response.json())
+    .then(data => {
+      // call function to access array
+      accessMemes(data);
+      // set default to show first meme
+      showDetail(data[0]);
+    });
 });
 
 
@@ -88,12 +91,12 @@ document.querySelector('#new-meme').addEventListener('submit', (e) => {
 // use fetch GET to receive all faces
 document.addEventListener("DOMContentLoaded", () => {
   fetch("http://localhost:3000/memes-creating")
-  .then(response => response.json())
-  .then(data => {
-    // call function to access array
-    accessFaces(data);
-    // set default to show first face
-  });
+    .then(response => response.json())
+    .then(data => {
+      // call function to access array
+      accessFaces(data);
+      // set default to show first face
+    });
 });
 
 
@@ -128,10 +131,10 @@ function draw(face) {
   img.src = face.image;
   img.addEventListener("load", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    let ratio = Math.min (canvas.width / img.width, canvas.height / img.height);
-    ctx.drawImage(img, 0, 0, img.width, img.height, 
-    (canvas.width - img.width * ratio) / 2, (canvas.height - img.height * ratio) / 2, 
-    img.width * ratio, img.height * ratio);
+    let ratio = Math.min(canvas.width / img.width, canvas.height / img.height);
+    ctx.drawImage(img, 0, 0, img.width, img.height,
+      (canvas.width - img.width * ratio) / 2, (canvas.height - img.height * ratio) / 2,
+      img.width * ratio, img.height * ratio);
     ctx.font = '50px impact';
     ctx.strokeStyle = "black"
     ctx.lineWidth = 10;
@@ -139,15 +142,45 @@ function draw(face) {
     // add text into the canvas
     const topText = document.querySelector('#create-meme').topText.value;
     const bottomText = document.querySelector('#create-meme').bottomText.value;
-    ctx.strokeText(topText, 50, 90);
+    ctx.strokeText(topText, 50, 90,);
     ctx.strokeText(bottomText, 50, 450);
     ctx.fillStyle = "white"
     ctx.lineWidth = 4
     ctx.fillText(topText, 50, 90);
     ctx.fillText(bottomText, 50, 450);
-<<<<<<< HEAD
-    console.log(currentImage);
-=======
->>>>>>> 01bf8ace56179cf2a9c053707a4dc4d072e7cb4e
   });
 };
+
+
+// Show log in 
+function logInShow() {
+  document.querySelector('#log-in').classList.remove("hidden");
+}
+
+
+// 
+
+fetch("http://localhost:3000/user-list")
+  .then(response => response.json())
+  .then(data => checkLoginInfo(data))
+
+
+//
+function checkLoginInfo(userData) {
+  document.querySelector('#log-in').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const inputUsername = e.target.username.value;
+    const inputPassword = e.target.password.value;
+
+    for (singleUser of userData) {
+      if (inputUsername === singleUser.username && inputPassword === singleUser.password) {
+        currentUser = inputUsername;
+        document.querySelector('#current-user').classList.remove("hidden");
+        document.querySelector('#current-user').textContent = "Current User: " + currentUser;
+        document.querySelector("#log-in").classList.add("hidden");
+        document.querySelector('#wrong-info').classList.add("hidden");
+        break;
+      }
+    }
+  })
+}

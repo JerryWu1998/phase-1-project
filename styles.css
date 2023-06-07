@@ -217,3 +217,7 @@ button:hover {
 ul {
     list-style-type: none;
 }
+
+.hidden {
+    display: none;
+}

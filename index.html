@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <!-- Import js and css -->
   <meta charset="utf-8" />
   <title>Memes</title>
   <link rel="stylesheet" type="text/css" href="styles.css" />
@@ -14,6 +15,29 @@
   <header>
     <h1>Museum of Memes</h1>
   </header>
+
+  <!-- Show Log in and Sign up button -->
+  <div>
+    <button onclick="logInShow()">Log in</button>
+    <button>Sign up</button>
+  </div>
+  <!-- Log in form -->
+  <form id="log-in" class="hidden">
+    <label for="username">Username: </label>
+    <input id="txt-input" type="text" name="username" id="user-username" placeholder=""/>
+    <label for="password">Password: </label>
+    <input id="txt-input" type="text" name="password" id="user-password" placeholder=""/>
+    <input id="submit-button" type="submit" value="Submit" />
+  </form>
+  <!-- Show current user info -->
+  <div id="current-user" class="hidden"></div>
+  <div id="wrong-info" class="=hidden">Wrong Username or Password!</div>
+
+
+
+
+
+  
 
   <!-- Selected meme's name -->
   <h2 id="detail-name">Insert Name Here</h2>
