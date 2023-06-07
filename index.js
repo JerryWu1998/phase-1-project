@@ -84,11 +84,17 @@ function showMyMeme() {
     document.querySelector('#show-my-meme').textContent = "Show All Meme"
   } else {
     // show all meme, change the button to current user's meme
-    let memeItems = document.querySelector('#meme-container').getElementsByTagName("div");
-    for (let i = 0; i < memeItems.length; i++) {
-      memeItems[i].style.display = "";
-    }
+    showAllMeme();
     document.querySelector('#show-my-meme').textContent = "Show My Meme";
+  }
+}
+
+
+// Function that show all meme
+function showAllMeme() {
+  let memeItems = document.querySelector('#meme-container').getElementsByTagName("div");
+  for (let i = 0; i < memeItems.length; i++) {
+    memeItems[i].style.display = "";
   }
 }
 
@@ -311,9 +317,13 @@ function logOut() {
     // pop out message if user haven't logged in
     window.alert("You haven't logged in yet.");
   } else {
-    // clear current user, pop out log out message
+    // clear current user
     currentUser = "";
+    // reset log in button
     document.querySelector('#log-in-button').textContent = "Log in";
+    // reset all meme in meme-container
+    showAllMeme();
+    // pop out log out message
     window.alert("You logged out successfully.");
   }
 }
