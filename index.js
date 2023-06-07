@@ -25,6 +25,8 @@ function accessMemes(memeArray) {
     const singleMemeContainer = document.createElement('div');
     singleMemeContainer.textContent = singleMeme.name;
     singleMemeContainer.classList.add(singleMeme.owner);
+    singleMemeContainer.setAttribute('id', singleMeme.id);
+    // create img into div
     const singleMemeImage = document.createElement('img');
     singleMemeImage.src = singleMeme.image;
     // append single meme to DOM
@@ -77,6 +79,8 @@ function showMyMeme() {
     for (let i = 0; i < memeItems.length; i++) {
       if (memeItems[i].className === currentUser) {
         memeItems[i].style.display = "";
+        document.querySelector('#detail-name').textContent = memeItems[i].textContent;
+        document.querySelector('#detail-image').src = memeItems[i].getElementsByTagName('img')[0].src;
       } else {
         memeItems[i].style.display = "none";
       }
@@ -85,7 +89,6 @@ function showMyMeme() {
   } else {
     // show all meme, change the button to current user's meme
     showAllMeme();
-    document.querySelector('#show-my-meme').textContent = "My Meme";
   }
 }
 
@@ -96,22 +99,22 @@ function showAllMeme() {
   for (let i = 0; i < memeItems.length; i++) {
     memeItems[i].style.display = "";
   }
+  document.querySelector('#show-my-meme').textContent = "My Meme";
 }
 
 
-// Upload a new meme with name, url and description
+// Upload a new meme with name and url
 document.querySelector('#new-meme').addEventListener('submit', (e) => {
   e.preventDefault();
   if (currentUser === "") {
     window.alert("For adding meme, you have to log in first.")
   } else {
-    if (e.target.image.value === "" || e.target.name.value === "" || e.target.description.value === "") {
+    if (e.target.image.value === "" || e.target.name.value === "") {
       window.alert("Please fill out all the forms.")
     } else {
       const newUploadMeme = {
         name: e.target.name.value,
         image: e.target.image.value,
-        description: e.target.description.value,
         owner: currentUser
       };
       // use fetch POST to add new meme in db.json

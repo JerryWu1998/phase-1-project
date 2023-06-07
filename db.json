@@ -4,48 +4,41 @@
       "id": 1,
       "name": "Cat Meme",
       "image": "https://www.theinterrobang.ca/images/interrobang/030819/B8QC6DAZ9PWRK7M2.jpg",
-      "description": "The history of memes",
       "owner": "admin"
     },
     {
       "id": 2,
       "name": "Drunk Meme",
       "image": "https://media.tenor.com/U8gwt2-KX0gAAAAd/funny-memes.gif",
-      "description": "I am not drunk",
       "owner": "admin"
     },
     {
       "id": 3,
       "name": "Aliens Meme",
       "image": "https://media2.sacurrent.com/sacurrent/imager/u/original/2479890/aliens-guy.jpg",
-      "description": "Must be the aliens",
       "owner": "admin"
     },
     {
       "id": 4,
       "name": "Side-Eye Chloe Meme",
       "image": "https://helios-i.mashable.com/imagery/articles/01Fzl1MROydyq66J8rXDNzr/hero-image.fill.size_1200x1200.v1614267976.png",
-      "description": "Side-Eye",
       "owner": "admin"
     },
     {
       "id": 5,
       "name": "Mail Room Charlie Meme",
       "image": "https://static.tvtropes.org/pmwiki/pub/images/6db_3.jpg",
-      "description": "Pepe Silva",
       "owner": "admin"
     },
     {
       "name": "To Meme",
       "image": "https://www.digitalmomblog.com/wp-content/uploads/2022/10/to-meme-or-not-to-meme.jpeg",
-      "description": "To Meme or not to Meme",
       "id": 6,
       "owner": "qqqwww"
     },
     {
       "name": "Disaster Girl Meme",
       "image": "https://static01.nyt.com/images/2021/04/30/multimedia/30xp-meme/29xp-meme-mediumSquareAt3X-v5.jpg",
-      "description": "Burning Building",
       "id": 7,
       "owner": "qqqwww"
     }
