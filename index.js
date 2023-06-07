@@ -238,20 +238,24 @@ const mouseOverContainer = document.getElementById("movement-container");
 const element = document.getElementById("canvas");
 
 function transformElement(x, y) {
+  // Gets pozition of element we want to move
   let box = element.getBoundingClientRect();
+  // Calculates rotation value of x 
   let calcX = -(y - box.y - (box.height / 2)) / multiple;
+  // Calculates rotation value of y
   let calcY = (x - box.x - (box.width / 2)) / multiple;
-  
-  element.style.transform  = "rotateX("+ calcX +"deg) "
-                        + "rotateY("+ calcY +"deg)";
+  // Sets the transform property to the combination of rotation values of x and y and sets those values to degrees
+  element.style.transform  = "rotateX("+ calcX +"deg) " + "rotateY("+ calcY +"deg)";
 }
 
+// When you mouse-over the container, it triggers the transformation function
 mouseOverContainer.addEventListener('mousemove', (e) => {
   window.requestAnimationFrame(function(){
     transformElement(e.clientX, e.clientY);
   });
 });
 
+// When you take the mouse off the element, it takes away the transformation function and sets the position back to normal
 mouseOverContainer.addEventListener('mouseleave', (e) => {
   window.requestAnimationFrame(function(){
     element.style.transform = "rotateX(0) rotateY(0)";
