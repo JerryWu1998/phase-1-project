@@ -173,7 +173,7 @@ function checkLoginInfo(inputUsername, inputPassword) {
     .then(usersData => {
       // use for loop to go over all users in db.json
       for (singleUser of usersData) {
-        
+
         if (inputUsername === singleUser.username && inputPassword === singleUser.password) {
           // if matched, show the current user info, hide the text bar
           currentUser = inputUsername;
