@@ -170,6 +170,7 @@ function logInShow() {
     window.alert("You are already logged in. If you want to switch accounts, please log out first.");
   } else {
     document.querySelector('#log-in').style.display = "block";
+    document.querySelector('#sign-up').style.display = "none";
   }
 }
 
@@ -192,13 +193,13 @@ function checkLoginInfo(inputUsername, inputPassword) {
         if (inputUsername === singleUser.username && inputPassword === singleUser.password) {
           // if matched, show the current user info, hide the text bar
           currentUser = inputUsername;
-          document.querySelector('#log-in-button').textContent = currentUser;
+          document.querySelector('#log-in-button').textContent = "Account: " + currentUser;
           document.querySelector("#log-in").style.display = "none";
-          document.querySelector('#wrong-info').style.display = "none";
+          window.alert("You have successfully logged in.");
           break;
-        } else {
-          // if doesn't match, show error
-          document.querySelector('#wrong-info').style.display = "block";
+        } else if (singleUser === usersData.at(-1)) {
+          window.alert("Wrong Username or Password.");
+        } else{
         }
       }
     })
@@ -207,12 +208,8 @@ function checkLoginInfo(inputUsername, inputPassword) {
 
 // Show sign up
 function signUp() {
-  if (currentUser !== "") {
-    // pop out message if user already logged in
-    window.alert("You are already logged in. If you want to switch accounts, please log out first.");
-  } else {
-    document.querySelector('#log-in').style.display = "block";
-  }
+  document.querySelector('#sign-up').style.display = "block";
+  document.querySelector('#log-in').style.display = "none";
 }
 
 
