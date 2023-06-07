@@ -71,7 +71,7 @@ function showMyMeme() {
   if (currentUser === "") {
     // user should log in first
     window.alert("Please log in.")
-  } else if (document.querySelector('#show-my-meme').textContent === "Show My Meme") {
+  } else if (document.querySelector('#show-my-meme').textContent === "My Meme") {
     // show current user's meme, change the button to show all meme
     let memeItems = document.querySelector('#meme-container').getElementsByTagName("div");
     for (let i = 0; i < memeItems.length; i++) {
@@ -81,11 +81,11 @@ function showMyMeme() {
         memeItems[i].style.display = "none";
       }
     }
-    document.querySelector('#show-my-meme').textContent = "Show All Meme"
+    document.querySelector('#show-my-meme').textContent = "All Meme"
   } else {
     // show all meme, change the button to current user's meme
     showAllMeme();
-    document.querySelector('#show-my-meme').textContent = "Show My Meme";
+    document.querySelector('#show-my-meme').textContent = "My Meme";
   }
 }
 
