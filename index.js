@@ -23,8 +23,9 @@ function accessMemes(memeArray) {
   memeArray.forEach((singleMeme) => {
     // create single meme div
     const singleMemeContainer = document.createElement('div');
-    const singleMemeImage = document.createElement('img');
     singleMemeContainer.textContent = singleMeme.name;
+    singleMemeContainer.classList.add(singleMeme.owner);
+    const singleMemeImage = document.createElement('img');
     singleMemeImage.src = singleMeme.image;
     // append single meme to DOM
     singleMemeContainer.append(singleMemeImage);
@@ -65,6 +66,39 @@ function searchMeme() {
 }
 
 
+// Function to show the current user's memes
+function showMyMeme() {
+  if (currentUser === "") {
+    // user should log in first
+    window.alert("Please log in.")
+  } else if (document.querySelector('#show-my-meme').textContent === "Show My Meme") {
+    // show current user's meme, change the button to show all meme
+    let memeItems = document.querySelector('#meme-container').getElementsByTagName("div");
+    for (let i = 0; i < memeItems.length; i++) {
+      if (memeItems[i].className === currentUser) {
+        memeItems[i].style.display = "";
+      } else {
+        memeItems[i].style.display = "none";
+      }
+    }
+    document.querySelector('#show-my-meme').textContent = "Show All Meme"
+  } else {
+    // show all meme, change the button to current user's meme
+    showAllMeme();
+    document.querySelector('#show-my-meme').textContent = "Show My Meme";
+  }
+}
+
+
+// Function that show all meme
+function showAllMeme() {
+  let memeItems = document.querySelector('#meme-container').getElementsByTagName("div");
+  for (let i = 0; i < memeItems.length; i++) {
+    memeItems[i].style.display = "";
+  }
+}
+
+
 // Upload a new meme with name, url and description
 document.querySelector('#new-meme').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -77,7 +111,8 @@ document.querySelector('#new-meme').addEventListener('submit', (e) => {
       const newUploadMeme = {
         name: e.target.name.value,
         image: e.target.image.value,
-        description: e.target.description.value
+        description: e.target.description.value,
+        owner: currentUser
       };
       // use fetch POST to add new meme in db.json
       fetch("http://localhost:3000/done-memes", {
@@ -164,7 +199,7 @@ function draw(face) {
 }
 
 
-// Show log in text bar
+// Show log in, hide sign up
 function logInShow() {
   if (currentUser !== "") {
     // pop out message if user already logged in
@@ -180,6 +215,8 @@ function logInShow() {
 document.querySelector('#log-in').addEventListener('submit', (e) => {
   e.preventDefault();
   checkLoginInfo(e.target.username.value, e.target.password.value);
+  e.target.username.value = "";
+  e.target.password.value = "";
 })
 
 
@@ -199,6 +236,7 @@ function checkLoginInfo(inputUsername, inputPassword) {
           window.alert("You have successfully logged in.");
           break;
         } else if (singleUser === usersData.at(-1)) {
+          // if all username and password won't match, pop out wrong message
           window.alert("Wrong Username or Password.");
         }
       }
@@ -206,7 +244,7 @@ function checkLoginInfo(inputUsername, inputPassword) {
 }
 
 
-// Show sign up
+// Show sign up, hide sign in
 function signUp() {
   document.querySelector('#sign-up').style.display = "block";
   document.querySelector('#log-in').style.display = "none";
@@ -217,25 +255,32 @@ function signUp() {
 document.querySelector('#sign-up').addEventListener('submit', (e) => {
   e.preventDefault();
   addSignUpInfo(e.target.username.value, e.target.password.value);
+  e.target.username.value = "";
+  e.target.password.value = "";
 })
 
 
 // Function that add sign up user into db.json
 function addSignUpInfo(inputUsername, inputPassword) {
-  if (inputUsername.length < 6) {
-    window.alert("The username is too short, at least six characters.");
-  } else if (inputPassword.length < 6) {
-    window.alert("The password is too short, at least six characters.");
+  // username cannot less than 5 characters
+  if (inputUsername.length < 5) {
+    window.alert("The username is too short, at least five characters.");
+  } else if (inputPassword.length < 5) {
+    // password cannot less than 5 characters
+    window.alert("The password is too short, at least five characters.");
   } else {
+    // check if the username already exists
     checkUserName(inputUsername)
       .then(usernameExists => {
         if (usernameExists) {
           window.alert("The username already exists, please use another username.");
         } else {
+          // create a new user object
           const newUser = {
             username: inputUsername,
             password: inputPassword
           };
+          // use POST to add user data into db.json
           fetch("http://localhost:3000/user-list", {
             method: "POST",
             headers: {
@@ -248,13 +293,15 @@ function addSignUpInfo(inputUsername, inputPassword) {
             })
         }
       })
-
   }
 }
 
+
+// Async function will return true if the username already exists
 async function checkUserName(inputUsername) {
   const response = await fetch("http://localhost:3000/user-list");
   const usersData = await response.json();
+  // create a array contains all usernames
   const userNamelist = usersData.map(singleUser => singleUser.username);
   for (const user of userNamelist) {
     if (inputUsername === user) {
@@ -265,16 +312,19 @@ async function checkUserName(inputUsername) {
 }
 
 
-
 // Log out
 function logOut() {
   if (currentUser === "") {
     // pop out message if user haven't logged in
     window.alert("You haven't logged in yet.");
   } else {
-    // clear current user, pop out log out message
+    // clear current user
     currentUser = "";
+    // reset log in button
     document.querySelector('#log-in-button').textContent = "Log in";
+    // reset all meme in meme-container
+    showAllMeme();
+    // pop out log out message
     window.alert("You logged out successfully.");
   }
 }
@@ -297,19 +347,19 @@ function transformElement(x, y) {
   // Calculates rotation value of y
   let calcY = (x - box.x - (box.width / 2)) / multiple;
   // Sets the transform property to the combination of rotation values of x and y and sets those values to degrees
-  element.style.transform  = "rotateX("+ calcX +"deg) " + "rotateY("+ calcY +"deg)";
+  element.style.transform = "rotateX(" + calcX + "deg) " + "rotateY(" + calcY + "deg)";
 }
 
 // When you mouse-over the container, it triggers the transformation function
 mouseOverContainer.addEventListener('mousemove', (e) => {
-  window.requestAnimationFrame(function(){
+  window.requestAnimationFrame(function () {
     transformElement(e.clientX, e.clientY);
   });
 });
 
 // When you take the mouse off the element, it takes away the transformation function and sets the position back to normal
 mouseOverContainer.addEventListener('mouseleave', (e) => {
-  window.requestAnimationFrame(function(){
+  window.requestAnimationFrame(function () {
     element.style.transform = "rotateX(0) rotateY(0)";
   });
 });
