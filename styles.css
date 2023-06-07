@@ -1,5 +1,5 @@
 body{
-
+    margin: 0%;
     text-align: center;
     background-color: #fcf9f7;
 }
@@ -13,9 +13,9 @@ header {
     background-color: rgb(161, 166, 170);
     height: 50px;
     width: 100%;
-    margin-bottom: 2%;
-    margin-top: -8px;
     justify-content: right;
+    margin: 0 0 1em 0;
+	padding: 0;
 }
 
 #sign-up-log-in {
