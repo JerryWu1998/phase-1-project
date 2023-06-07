@@ -16,7 +16,7 @@
   <div id="sign-up-log-in">
     <button id="log-in-button" onclick="logInShow()">Log in</button>
     <button id="sign-up-button" onclick="signUp()">Sign up</button>
-    <button id="log-in-button" onclick="logOut()">Log out</button>
+    <button id="log-out-button" onclick="logOut()">Log out</button>
   </div>
 </div>
 
@@ -47,6 +47,13 @@
 
   <!-- Selected meme's name -->
   <h2 id="detail-name">Insert Name Here</h2>
+
+  <!-- Buttons for edit meme -->
+  <div>
+    <button onclick="renameMeme()">Rename</button>
+    <button onclick="deleteMeme()">Delete</button>
+    <p></p>
+  </div>
 
   <!-- Big picture of meme -->
   <div id="big-meme-picture">

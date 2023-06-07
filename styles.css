@@ -25,6 +25,9 @@ body{
 #sign-up-button {
     border: none;
 }
+#log-out-button {
+    border: none;
+}
 
 
 /* 'Log In', 'Sign Up', and 'Log Out' hidden info */
@@ -32,6 +35,9 @@ body{
     display: none
 }
 #sign-up {
+    display: none
+}
+#log-out-button {
     display: none
 }
 

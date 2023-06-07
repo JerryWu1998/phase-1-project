@@ -103,6 +103,21 @@ function showAllMeme() {
 }
 
 
+// Function to rename selected Meme
+function renameMeme() {
+
+}
+
+
+// Function to delete selected Meme
+function deleteMeme() {
+
+}
+
+
+
+
+
 // Upload a new meme with name and url
 document.querySelector('#new-meme').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -232,10 +247,11 @@ function checkLoginInfo(inputUsername, inputPassword) {
       // use for loop to go over all users in db.json
       for (singleUser of usersData) {
         if (inputUsername === singleUser.username && inputPassword === singleUser.password) {
-          // if matched, the login button becomes username, hide the text bar
+          // if matched, the login button becomes username, hide the text bar, show log out
           currentUser = inputUsername;
           document.querySelector('#log-in-button').textContent = "Account: " + currentUser;
           document.querySelector("#log-in").style.display = "none";
+          document.querySelector("#log-out-button").style.display = "block";
           window.alert("You have successfully logged in.");
           break;
         } else if (singleUser === usersData.at(-1)) {
@@ -317,19 +333,15 @@ async function checkUserName(inputUsername) {
 
 // Log out
 function logOut() {
-  if (currentUser === "") {
-    // pop out message if user haven't logged in
-    window.alert("You haven't logged in yet.");
-  } else {
-    // clear current user
-    currentUser = "";
-    // reset log in button
-    document.querySelector('#log-in-button').textContent = "Log in";
-    // reset all meme in meme-container
-    showAllMeme();
-    // pop out log out message
-    window.alert("You logged out successfully.");
-  }
+  // clear current user
+  currentUser = "";
+  // reset nav bar
+  document.querySelector('#log-in-button').textContent = "Log in";
+  document.querySelector("#log-out-button").style.display = "none";
+  // reset all meme in meme-container
+  showAllMeme();
+  // pop out log out message
+  window.alert("You logged out successfully.");
 }
 
 
