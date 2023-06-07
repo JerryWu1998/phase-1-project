@@ -163,7 +163,7 @@ function draw(face) {
 }
 
 
-// Show log in text bar
+// Show log in, hide sign up
 function logInShow() {
   if (currentUser !== "") {
     // pop out message if user already logged in
@@ -198,6 +198,7 @@ function checkLoginInfo(inputUsername, inputPassword) {
           window.alert("You have successfully logged in.");
           break;
         } else if (singleUser === usersData.at(-1)) {
+          // if all username and password won't match, pop out wrong message
           window.alert("Wrong Username or Password.");
         }
       }
@@ -205,7 +206,7 @@ function checkLoginInfo(inputUsername, inputPassword) {
 }
 
 
-// Show sign up
+// Show sign up, hide sign in
 function signUp() {
   document.querySelector('#sign-up').style.display = "block";
   document.querySelector('#log-in').style.display = "none";
@@ -221,20 +222,25 @@ document.querySelector('#sign-up').addEventListener('submit', (e) => {
 
 // Function that add sign up user into db.json
 function addSignUpInfo(inputUsername, inputPassword) {
-  if (inputUsername.length < 6) {
-    window.alert("The username is too short, at least six characters.");
-  } else if (inputPassword.length < 6) {
-    window.alert("The password is too short, at least six characters.");
+  // username cannot less than 5 characters
+  if (inputUsername.length < 5) {
+    window.alert("The username is too short, at least five characters.");
+  } else if (inputPassword.length < 5) {
+    // password cannot less than 5 characters
+    window.alert("The password is too short, at least five characters.");
   } else {
+    // check if the username already exists
     checkUserName(inputUsername)
       .then(usernameExists => {
         if (usernameExists) {
           window.alert("The username already exists, please use another username.");
         } else {
+          // create a new user object
           const newUser = {
             username: inputUsername,
             password: inputPassword
           };
+          // use POST to add user data into db.json
           fetch("http://localhost:3000/user-list", {
             method: "POST",
             headers: {
@@ -247,13 +253,15 @@ function addSignUpInfo(inputUsername, inputPassword) {
             })
         }
       })
-
   }
 }
 
+
+// Async function will return true if the username already exists
 async function checkUserName(inputUsername) {
   const response = await fetch("http://localhost:3000/user-list");
   const usersData = await response.json();
+  // create a array contains all usernames
   const userNamelist = usersData.map(singleUser => singleUser.username);
   for (const user of userNamelist) {
     if (inputUsername === user) {
