@@ -15,7 +15,7 @@
   <!-- Show Log in and Sign up button -->
   <div id="sign-up-log-in">
     <button id="log-in-button" onclick="logInShow()">Log in</button>
-    <button id="sign-up-button">Sign up</button>
+    <button id="sign-up-button" onclick="SignUp()">Sign up</button>
     <button id="log-in-button" onclick="logOut()">Log out</button>
   </div>
 </div>
@@ -27,6 +27,18 @@
   <input id="txt-input" type="text" name="password" id="user-password" placeholder=""/>
   <input id="submit-button" type="submit" value="Submit" />
 </form>
+
+<!-- Sign up form -->
+<form id="sign-up">
+  <label for="username">Username: </label>
+  <input id="txt-input" type="text" name="username" id="su-username" placeholder=""/>
+  <label for="password">Password: </label>
+  <input id="txt-input" type="text" name="password" id="su-password" placeholder=""/>
+  <input id="submit-button" type="submit" value="Submit" />
+</form>
+
+
+
 
 <!-- Show current user info -->
 <div id="current-user">Please log in</div>
@@ -76,7 +88,7 @@
   <!-- Create a meme with faces and input text -->
   <div id="create-new-meme">
     <!-- Title of create a meme -->
-    <h2 id="create-new-meme-title">Create your own Meme</h2>
+    <h2 id="create-new-meme-title">Meme Creater</h2>
     <!-- Canvas of face and text -->
     <div id="canvas-container">
       <canvas id="canvas" width="500" height="500"></canvas>

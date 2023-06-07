@@ -1,7 +1,8 @@
+// Create a global variable to check the meme's owner
 let currentUser = "";
 
 
-// use fetch GET to receive all done memes
+// Use fetch GET to receive all done memes
 document.addEventListener("DOMContentLoaded", () => {
   fetch("http://localhost:3000/done-memes")
     .then(response => response.json())
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// function to access meme array
+// Function to access meme array
 function accessMemes(memeArray) {
   // select the container where to put memes
   const memeContainer = document.querySelector('#meme-container');
@@ -36,7 +37,7 @@ function accessMemes(memeArray) {
 };
 
 
-// after click image, shows detail
+// After click image, shows detail
 function showDetail(singleMemeData) {
   // update name and image in detail area
   const nameDetail = document.querySelector('#detail-name');
@@ -46,7 +47,7 @@ function showDetail(singleMemeData) {
 };
 
 
-// function for search bar
+// Function for search bar
 function searchMeme() {
   // select input value and meme names
   let searchValue = document.querySelector('#search-input').value;
@@ -64,31 +65,36 @@ function searchMeme() {
 };
 
 
-// upload a new meme with name, url and description
+// Upload a new meme with name, url and description
 document.querySelector('#new-meme').addEventListener('submit', (e) => {
   e.preventDefault();
-  if (e.target.image.value === "" || e.target.name.value === "" || e.target.description.value === "") {
+  if (currentUser === "") {
+    window.alert("For adding meme, you have to log in first.")
   } else {
-    const newUploadMeme = {
-      name: e.target.name.value,
-      image: e.target.image.value,
-      description: e.target.description.value
+    if (e.target.image.value === "" || e.target.name.value === "" || e.target.description.value === "") {
+      window.alert("Please fill out all the forms.")
+    } else {
+      const newUploadMeme = {
+        name: e.target.name.value,
+        image: e.target.image.value,
+        description: e.target.description.value
+      };
+      // use fetch POST to add new meme in db.json
+      fetch("http://localhost:3000/done-memes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUploadMeme)
+      })
+        // add meme into the page
+        .then(accessMemes([newUploadMeme]));
     };
-    // use fetch POST to add new meme in db.json
-    fetch("http://localhost:3000/done-memes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUploadMeme)
-    })
-      // add meme into the page
-      .then(accessMemes([newUploadMeme]));
   };
 });
 
 
-// use fetch GET to receive all faces
+// Use fetch GET to receive all faces
 document.addEventListener("DOMContentLoaded", () => {
   fetch("http://localhost:3000/memes-creating")
     .then(response => response.json())
@@ -100,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// function to access faces array
+// Function to access faces array
 function accessFaces(faceArray) {
   // select the container where to put faces
   const faceContainer = document.querySelector('#new-meme-container');
@@ -155,6 +161,7 @@ function draw(face) {
 // Show log in text bar
 function logInShow() {
   if (currentUser !== "") {
+    // pop out message if user already logged in
     window.alert("You are already logged in. If you want to switch accounts, please log out first.");
   } else {
     document.querySelector('#log-in').style.display = "block";
@@ -169,7 +176,7 @@ document.querySelector('#log-in').addEventListener('submit', (e) => {
 })
 
 
-// function that check the username and password
+// Function that check the username and password
 function checkLoginInfo(inputUsername, inputPassword) {
   // use fetch GET to receive all users info
   fetch("http://localhost:3000/user-list")
@@ -193,9 +200,23 @@ function checkLoginInfo(inputUsername, inputPassword) {
 }
 
 
+// Sign up
+function signUp() {
+  
+}
+
+
+
 // Log out
 function logOut() {
-  currentUser = "";
-  document.querySelector('#current-user').textContent = "Please log in"
-  window.alert("You logged out successfully.");
+  if (currentUser === "") {
+    // pop out message if user haven't logged in
+    window.alert("You haven't logged in yet.");
+  } else {
+    // clear current user, pop out log out message
+    currentUser = "";
+    document.querySelector('#current-user').textContent = "Please log in"
+    window.alert("You logged out successfully.");
+  }
 }
+
