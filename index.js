@@ -227,3 +227,35 @@ function logOut() {
   }
 }
 
+
+
+
+// 3D hover effect
+// credit: https://codepen.io/Chokcoco/pen/mdpGXjj
+
+const multiple = 10;
+// area in which mouse movement will be tracked
+const mouseOverContainer = document.getElementById("movement-container");
+// the element that will be moved
+const element = document.getElementById("canvas");
+
+function transformElement(x, y) {
+  let box = element.getBoundingClientRect();
+  let calcX = -(y - box.y - (box.height / 2)) / multiple;
+  let calcY = (x - box.x - (box.width / 2)) / multiple;
+  
+  element.style.transform  = "rotateX("+ calcX +"deg) "
+                        + "rotateY("+ calcY +"deg)";
+}
+
+mouseOverContainer.addEventListener('mousemove', (e) => {
+  window.requestAnimationFrame(function(){
+    transformElement(e.clientX, e.clientY);
+  });
+});
+
+mouseOverContainer.addEventListener('mouseleave', (e) => {
+  window.requestAnimationFrame(function(){
+    element.style.transform = "rotateX(0) rotateY(0)";
+  });
+});
