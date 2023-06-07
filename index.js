@@ -23,8 +23,9 @@ function accessMemes(memeArray) {
   memeArray.forEach((singleMeme) => {
     // create single meme div
     const singleMemeContainer = document.createElement('div');
-    const singleMemeImage = document.createElement('img');
     singleMemeContainer.textContent = singleMeme.name;
+    singleMemeContainer.classList.add(singleMeme.owner);
+    const singleMemeImage = document.createElement('img');
     singleMemeImage.src = singleMeme.image;
     // append single meme to DOM
     singleMemeContainer.append(singleMemeImage);
@@ -65,6 +66,33 @@ function searchMeme() {
 }
 
 
+// Function to show the current user's memes
+function showMyMeme() {
+  if (currentUser === "") {
+    // user should log in first
+    window.alert("Please log in.")
+  } else if (document.querySelector('#show-my-meme').textContent === "Show My Meme") {
+    // show current user's meme, change the button to show all meme
+    let memeItems = document.querySelector('#meme-container').getElementsByTagName("div");
+    for (let i = 0; i < memeItems.length; i++) {
+      if (memeItems[i].className === currentUser) {
+        memeItems[i].style.display = "";
+      } else {
+        memeItems[i].style.display = "none";
+      }
+    }
+    document.querySelector('#show-my-meme').textContent = "Show All Meme"
+  } else {
+    // show all meme, change the button to current user's meme
+    let memeItems = document.querySelector('#meme-container').getElementsByTagName("div");
+    for (let i = 0; i < memeItems.length; i++) {
+      memeItems[i].style.display = "";
+    }
+    document.querySelector('#show-my-meme').textContent = "Show My Meme";
+  }
+}
+
+
 // Upload a new meme with name, url and description
 document.querySelector('#new-meme').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -77,7 +105,8 @@ document.querySelector('#new-meme').addEventListener('submit', (e) => {
       const newUploadMeme = {
         name: e.target.name.value,
         image: e.target.image.value,
-        description: e.target.description.value
+        description: e.target.description.value,
+        owner: currentUser
       };
       // use fetch POST to add new meme in db.json
       fetch("http://localhost:3000/done-memes", {
@@ -276,7 +305,6 @@ async function checkUserName(inputUsername) {
 }
 
 
-
 // Log out
 function logOut() {
   if (currentUser === "") {
@@ -308,19 +336,19 @@ function transformElement(x, y) {
   // Calculates rotation value of y
   let calcY = (x - box.x - (box.width / 2)) / multiple;
   // Sets the transform property to the combination of rotation values of x and y and sets those values to degrees
-  element.style.transform  = "rotateX("+ calcX +"deg) " + "rotateY("+ calcY +"deg)";
+  element.style.transform = "rotateX(" + calcX + "deg) " + "rotateY(" + calcY + "deg)";
 }
 
 // When you mouse-over the container, it triggers the transformation function
 mouseOverContainer.addEventListener('mousemove', (e) => {
-  window.requestAnimationFrame(function(){
+  window.requestAnimationFrame(function () {
     transformElement(e.clientX, e.clientY);
   });
 });
 
 // When you take the mouse off the element, it takes away the transformation function and sets the position back to normal
 mouseOverContainer.addEventListener('mouseleave', (e) => {
-  window.requestAnimationFrame(function(){
+  window.requestAnimationFrame(function () {
     element.style.transform = "rotateX(0) rotateY(0)";
   });
 });
