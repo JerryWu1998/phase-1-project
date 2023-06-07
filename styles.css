@@ -1,6 +1,5 @@
 body{
-    justify-content: center;
-    align-items: center;
+
     text-align: center;
     background-color: #fcf9f7;
 }
@@ -8,6 +7,29 @@ body{
 header {
     margin-bottom: 2%;
     font-size: 20px;
+}
+.nav-bar {
+    display: flex;
+    background-color: rgb(161, 166, 170);
+    height: 50px;
+    width: 100%;
+    margin-bottom: 2%;
+    margin-top: -8px;
+    justify-content: right;
+}
+
+#sign-up-log-in {
+    margin-top: 8px;
+    display: flex;
+    position: relative;
+}
+
+#log-in-button {
+    border: none;
+}
+
+#sign-up-button {
+    border: none;
 }
 
 #detail-name {
