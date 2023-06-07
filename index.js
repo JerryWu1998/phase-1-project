@@ -179,6 +179,8 @@ function logInShow() {
 document.querySelector('#log-in').addEventListener('submit', (e) => {
   e.preventDefault();
   checkLoginInfo(e.target.username.value, e.target.password.value);
+  e.target.username.value = "";
+  e.target.password.value = "";
 })
 
 
@@ -217,6 +219,8 @@ function signUp() {
 document.querySelector('#sign-up').addEventListener('submit', (e) => {
   e.preventDefault();
   addSignUpInfo(e.target.username.value, e.target.password.value);
+  e.target.username.value = "";
+  e.target.password.value = "";
 })
 
 
