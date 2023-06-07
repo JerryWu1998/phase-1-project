@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
       accessMemes(data);
       // set default to show first meme
       showDetail(data[0]);
-    });
-});
+    })
+})
 
 
 // Function to access meme array
@@ -33,8 +33,8 @@ function accessMemes(memeArray) {
     singleMemeImage.addEventListener('click', () => {
       showDetail(singleMeme);
     })
-  });
-};
+  })
+}
 
 
 // After click image, shows detail
@@ -44,7 +44,7 @@ function showDetail(singleMemeData) {
   nameDetail.textContent = singleMemeData.name;
   const imageDetail = document.querySelector('#detail-image');
   imageDetail.src = singleMemeData.image;
-};
+}
 
 
 // Function for search bar
@@ -60,9 +60,9 @@ function searchMeme() {
       memeItems[i].style.display = "";
     } else {
       memeItems[i].style.display = "none";
-    };
-  };
-};
+    }
+  }
+}
 
 
 // Upload a new meme with name, url and description
@@ -90,9 +90,9 @@ document.querySelector('#new-meme').addEventListener('submit', (e) => {
         // add meme into the page
         .then(accessMemes([newUploadMeme]))
         .then(window.alert("Add meme successfully."))
-    };
-  };
-});
+    }
+  }
+})
 
 
 // Use fetch GET to receive all faces
@@ -103,8 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // call function to access array
       accessFaces(data);
       // set default to show first face
-    });
-});
+    })
+})
 
 
 // Function to access faces array
@@ -125,8 +125,8 @@ function accessFaces(faceArray) {
     singleFaceImage.addEventListener('click', () => {
       draw(singleFace);
     })
-  });
-};
+  })
+}
 
 
 
@@ -159,8 +159,8 @@ function draw(face) {
     ctx.fillText(topText, canvas.width / 2, 90);
     ctx.textAlign = "center";
     ctx.fillText(bottomText, canvas.width / 2, 450);
-  });
-};
+  })
+}
 
 
 // Show log in text bar
@@ -191,7 +191,7 @@ function checkLoginInfo(inputUsername, inputPassword) {
       // use for loop to go over all users in db.json
       for (singleUser of usersData) {
         if (inputUsername === singleUser.username && inputPassword === singleUser.password) {
-          // if matched, show the current user info, hide the text bar
+          // if matched, the login button becomes username, hide the text bar
           currentUser = inputUsername;
           document.querySelector('#log-in-button').textContent = "Account: " + currentUser;
           document.querySelector("#log-in").style.display = "none";
@@ -199,7 +199,6 @@ function checkLoginInfo(inputUsername, inputPassword) {
           break;
         } else if (singleUser === usersData.at(-1)) {
           window.alert("Wrong Username or Password.");
-        } else{
         }
       }
     })
@@ -210,6 +209,58 @@ function checkLoginInfo(inputUsername, inputPassword) {
 function signUp() {
   document.querySelector('#sign-up').style.display = "block";
   document.querySelector('#log-in').style.display = "none";
+}
+
+
+// Add event listener for sign up
+document.querySelector('#sign-up').addEventListener('submit', (e) => {
+  e.preventDefault();
+  addSignUpInfo(e.target.username.value, e.target.password.value);
+})
+
+
+// Function that add sign up user into db.json
+function addSignUpInfo(inputUsername, inputPassword) {
+  if (inputUsername.length < 6) {
+    window.alert("The username is too short, at least six characters.");
+  } else if (inputPassword.length < 6) {
+    window.alert("The password is too short, at least six characters.");
+  } else {
+    checkUserName(inputUsername)
+      .then(usernameExists => {
+        if (usernameExists) {
+          window.alert("The username already exists, please use another username.");
+        } else {
+          const newUser = {
+            username: inputUsername,
+            password: inputPassword
+          };
+          fetch("http://localhost:3000/user-list", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newUser)
+          })
+            .then(() => {
+              window.alert("You have successfully signed up.");
+            })
+        }
+      })
+
+  }
+}
+
+async function checkUserName(inputUsername) {
+  const response = await fetch("http://localhost:3000/user-list");
+  const usersData = await response.json();
+  const userNamelist = usersData.map(singleUser => singleUser.username);
+  for (const user of userNamelist) {
+    if (inputUsername === user) {
+      return true;
+    }
+  }
+  return false;
 }
 
 
