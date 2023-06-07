@@ -148,12 +148,16 @@ function draw(face) {
     // add text into the canvas
     const topText = document.querySelector('#create-meme').topText.value;
     const bottomText = document.querySelector('#create-meme').bottomText.value;
-    ctx.strokeText(topText, 200, 90);
-    ctx.strokeText(bottomText, 200, 450);
+    ctx.textAlign = "center";
+    ctx.strokeText(topText, canvas.width / 2, 90);
+    ctx.textAlign = "center";
+    ctx.strokeText(bottomText, canvas.width / 2, 450);
     ctx.fillStyle = "white"
     ctx.lineWidth = 4
-    ctx.fillText(topText, 200, 90);
-    ctx.fillText(bottomText, 200, 450);
+    ctx.textAlign = "center";
+    ctx.fillText(topText, canvas.width / 2, 90);
+    ctx.textAlign = "center";
+    ctx.fillText(bottomText, canvas.width / 2, 450);
   });
 };
 
@@ -200,9 +204,9 @@ function checkLoginInfo(inputUsername, inputPassword) {
 }
 
 
-// Sign up
+// Show sign up
 function signUp() {
-  
+
 }
 
 
