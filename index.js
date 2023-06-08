@@ -113,33 +113,63 @@ function showAllMeme() {
 
 // Function to rename selected Meme
 function renameMeme() {
-  // change name in DOM
-  const newName = document.querySelector('#rename-input').value;
-  const divElement = document.getElementById(currentMemeId);
-  const pElement = divElement.querySelector('p');
-  pElement.textContent = newName;
-  document.querySelector('#detail-name').textContent = newName;
-  document.querySelector('#rename-input').value = "";
-  // change name in db.json
-  fetch(`http://localhost:3000/done-memes/${currentMemeId}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: newName
-    })
-  })
+  // check the current meme if exist
+  if (document.querySelector('#detail-name').textContent === "") {
+    window.alert("Please select a meme.")
+  } else {
+    // change name in DOM
+    const newName = document.querySelector('#rename-input').value;
+    if (newName.length < 3) {
+      window.alert("Please input a valid name, at least 3 characters.")
+    } else {
+      const divElement = document.getElementById(currentMemeId);
+      const pElement = divElement.querySelector('p');
+      pElement.textContent = newName;
+      document.querySelector('#detail-name').textContent = newName;
+      // clear the input text bar
+      document.querySelector('#rename-input').value = "";
+      window.alert("Changed the name Successfully.");
+      // use PATCH to change name in db.json
+      fetch(`http://localhost:3000/done-memes/${currentMemeId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: newName
+        })
+      })
+    }
+  }
 }
 
 
 // Function to delete selected Meme
 function deleteMeme() {
-
+  // check the current meme if exist
+  if (document.querySelector('#detail-name').textContent === "") {
+    window.alert("Please select a meme.")
+  } else {
+    // confirm to delete
+    const confirmDelete = window.confirm("Are you sure you want to delete this meme?");
+    if (confirmDelete) {
+      // delete meme in DOM
+      document.getElementById(currentMemeId).remove();
+      document.querySelector('#detail-name').textContent = "";
+      document.querySelector('#detail-image').src = "";
+      window.alert("Deleted the meme successfully.");
+      console.log(currentMemeId);
+      // use DELETE to delete meme in db.json
+      fetch(`http://localhost:3000/done-memes/${currentMemeId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+    } else {
+    }
+  }
 }
-
-
-
 
 
 // Upload a new meme with name and url
@@ -209,7 +239,6 @@ function accessFaces(faceArray) {
     })
   })
 }
-
 
 
 // Draw the image and text
@@ -415,23 +444,23 @@ const card = document.getElementById('detail-image')
 
 card.addEventListener('mousemove', cardMouseMove)
 
-function cardMouseMove(event){
+function cardMouseMove(event) {
   const cardWidth = card.offsetWidth
   const cardHeight = card.offsetHeight
   // x center would = furthest most left position of card / 2 = center
-  const centerX = card.offsetLeft + cardWidth/2
+  const centerX = card.offsetLeft + cardWidth / 2
   // y center would = furthest most top position of card / 2 = center
-  const centerY = card.offsetTop + cardHeight/2
+  const centerY = card.offsetTop + cardHeight / 2
   // get mouse position
   const mouseX = event.clientX - centerX
   const mouseY = event.clientY - centerY
   // calculate roation values
-  const rotaterX = (-1)*25*mouseY/(cardHeight/2)
-  const rotaterY = 25*mouseX/(cardWidth/2)
+  const rotaterX = (-1) * 25 * mouseY / (cardHeight / 2)
+  const rotaterY = 25 * mouseX / (cardWidth / 2)
   card.style.transform = `perspective(1000px) rotateX(${rotaterX}deg) rotateY(${rotaterY}deg)`
 }
 
 card.addEventListener('mouseleave', cardMouseLeave)
-function cardMouseLeave(event){
+function cardMouseLeave(event) {
   card.style.transform = `rotateX(0deg) rotateY(0deg)`
 }
