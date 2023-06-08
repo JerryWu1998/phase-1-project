@@ -38,83 +38,90 @@
   <input id="submit-button" type="submit" value="Sign up" />
 </form>
 
+<!-- Title of the web -->
+<header>
+  <h1>Museum of Memes</h1>
+</header>
 
-  <!-- Title of the web -->
-  <header>
-    <h1>Museum of Memes</h1>
-  </header>
 
+<!-- Selected meme's name -->
+<h2 id="detail-name">Insert Name Here</h2>
 
-  <!-- Selected meme's name -->
-  <h2 id="detail-name">Insert Name Here</h2>
-
+<<<<<<< HEAD
   <!-- Buttons for edit meme -->
   <div id="edit-meme-button">
     <input type="text" id="rename-input" placeholder="new name" />
     <button onclick="renameMeme()">Rename</button>
     <button onclick="deleteMeme()">Delete</button>
     <p></p>
-  </div>
+=======
+<!-- Buttons for edit meme -->
+<div id="edit-meme-button">
+  <button onclick="renameMeme()">Rename</button>
+  <button onclick="deleteMeme()">Delete</button>
+  <p></p>
+</div>
 
-  <!-- Big picture of meme -->
-  <div id="big-meme-picture">
-    <img id="detail-image" src="" />
-  </div>
+<!-- Big picture of meme -->
+<div id="big-meme-picture">
+  <img id="detail-image" src="" />
+</div>
 
-  <!-- The search bar -->
-  <div id="search-bar">
-    <input type="text" id="search-input" placeholder="search meme" />
-    <button onclick="searchMeme()">Search</button>
-    <button onclick="showMyMeme()" id="show-my-meme">My Meme</button>
-  </div>
+<!-- The search bar -->
+<div id="search-bar">
+  <input type="text" id="search-input" placeholder="search meme" />
+  <button onclick="searchMeme()">Search</button>
+  <button onclick="showMyMeme()" id="show-my-meme">My Meme</button>
+</div>
 
-  <!-- The meme container -->
-  <div id="meme-menu">
-    <div id="meme-container">
-    </div>
+<!-- The meme container -->
+<div id="meme-menu">
+  <div id="meme-container">
+>>>>>>> 870bf2d3cd959f10caf99aada806306b46c331ed
   </div>
+</div>
 
-  <!-- Upload a done meme -->
-  <h2 id="add-new-meme-title">Add New Meme</h2>
-  <form id="new-meme">
-    <label for="name">Name: </label>
-    <input id="txt-input" type="text" name="name" id="new-name" placeholder="Image Name"/>
-    <label for="image">Image: </label>
-    <input id="file-input" type="file" name="image" placeholder="Add an Image">
-    <!-- <input id="txt-input" type="text" name="image" id="new-image" placeholder="Add an Image"/> -->
-    <input id="submit-button" type="submit" value="Upload" />
+<!-- Upload a done meme -->
+<h2 id="add-new-meme-title">Add New Meme</h2>
+<form id="new-meme">
+  <label for="name">Name: </label>
+  <input id="txt-input" type="text" name="name" id="new-name" placeholder="Image Name"/>
+  <label for="image">Image: </label>
+  <input id="file-input" type="file" name="image" placeholder="Add an Image">
+  <!-- <input id="txt-input" type="text" name="image" id="new-image" placeholder="Add an Image"/> -->
+  <input id="submit-button" type="submit" value="Upload" />
+</form>
+
+<!-- movement container -->
+<div id="movement-container">
+  <!-- Create a meme with faces and input text -->
+  <div id="create-new-meme">
+      <!-- Title of create a meme -->
+      <h2 id="create-new-meme-title">Meme Creater</h2>
+      <!-- Canvas of face and text -->
+      <div id="canvas-container">
+        <canvas id="canvas" width="500" height="500" src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" alt="Insert Name Here"></canvas>
+      </div>
+      <!-- Instruction of creating meme -->
+      <p id="instructions">Instructions:</p>
+      <ul>
+        <li>To create a meme, input top text and buttom text, then click a face which you wanna use</li>
+        <li>To save the meme you created, right click the image up there, click 'Save Image As'</li>
+      </ul>
+</div>
+</div>
+  <!-- The face container -->
+  <div id="face-container">
+    <div id="new-meme-container"></div>
+  </div>
+  <!-- Information input for creating meme -->
+  <form id="create-meme">
+    <label for="top-text">Top Text: </label>
+    <input id="txt-input" type="text" name="topText" id="create-top-text" placeholder="Add Top Text" />
+    <label for="bottom-text">Bottm Text: </label>
+    <input id="txt-input" type="text" name="bottomText" id="create-bottom-text" placeholder="Add Bottom Text" />
   </form>
-
-  <!-- movement container -->
-  <div id="movement-container">
-    <!-- Create a meme with faces and input text -->
-    <div id="create-new-meme">
-        <!-- Title of create a meme -->
-        <h2 id="create-new-meme-title">Meme Creater</h2>
-        <!-- Canvas of face and text -->
-        <div id="canvas-container">
-          <canvas id="canvas" width="500" height="500" src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" alt="Insert Name Here"></canvas>
-        </div>
-        <!-- Instruction of creating meme -->
-        <p id="instructions">Instructions:</p>
-        <ul>
-          <li>To create a meme, input top text and buttom text, then click a face which you wanna use</li>
-          <li>To save the meme you created, right click the image up there, click 'Save Image As'</li>
-        </ul>
-  </div>
-  </div>
-    <!-- The face container -->
-    <div id="face-container">
-      <div id="new-meme-container"></div>
-    </div>
-    <!-- Information input for creating meme -->
-    <form id="create-meme">
-      <label for="top-text">Top Text: </label>
-      <input id="txt-input" type="text" name="topText" id="create-top-text" placeholder="Add Top Text" />
-      <label for="bottom-text">Bottm Text: </label>
-      <input id="txt-input" type="text" name="bottomText" id="create-bottom-text" placeholder="Add Bottom Text" />
-    </form>
-  </div>
+</div>
   
 </body>
 

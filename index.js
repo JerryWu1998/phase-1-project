@@ -375,10 +375,9 @@ function logOut() {
 }
 
 
-// 3D hover effect
+// 3D hover effect for creating meme preview
 // credit: https://codepen.io/Chokcoco/pen/mdpGXjj
 
-const multiple = 10;
 // area in which mouse movement will be tracked
 const mouseOverContainer = document.getElementById("movement-container");
 // the element that will be moved
@@ -388,23 +387,51 @@ function transformElement(x, y) {
   // Gets pozition of element we want to move
   let box = element.getBoundingClientRect();
   // Calculates rotation value of x 
-  let calcX = -(y - box.y - (box.height / 2)) / multiple;
+  let calcX = -(y - box.y - (box.height / 2)) / 5;
   // Calculates rotation value of y
-  let calcY = (x - box.x - (box.width / 2)) / multiple;
+  let calcY = (x - box.x - (box.width / 2)) / 5;
   // Sets the transform property to the combination of rotation values of x and y and sets those values to degrees
-  element.style.transform = "rotateX(" + calcX + "deg) " + "rotateY(" + calcY + "deg)";
+  element.style.transform = `perspective(1000px) rotateX(${calcX}deg) rotateY(${calcY}deg)`
 }
 
 // When you mouse-over the container, it triggers the transformation function
-mouseOverContainer.addEventListener('mousemove', (e) => {
+element.addEventListener('mousemove', (e) => {
   window.requestAnimationFrame(function () {
     transformElement(e.clientX, e.clientY);
   });
 });
 
 // When you take the mouse off the element, it takes away the transformation function and sets the position back to normal
-mouseOverContainer.addEventListener('mouseleave', (e) => {
+element.addEventListener('mouseleave', (e) => {
   window.requestAnimationFrame(function () {
     element.style.transform = "rotateX(0) rotateY(0)";
   });
 });
+
+
+// 3D hover effect for large meme preview
+// area in which mouse movement will be tracked
+const card = document.getElementById('detail-image')
+
+card.addEventListener('mousemove', cardMouseMove)
+
+function cardMouseMove(event){
+  const cardWidth = card.offsetWidth
+  const cardHeight = card.offsetHeight
+  // x center would = furthest most left position of card / 2 = center
+  const centerX = card.offsetLeft + cardWidth/2
+  // y center would = furthest most top position of card / 2 = center
+  const centerY = card.offsetTop + cardHeight/2
+  // get mouse position
+  const mouseX = event.clientX - centerX
+  const mouseY = event.clientY - centerY
+  // calculate roation values
+  const rotaterX = (-1)*25*mouseY/(cardHeight/2)
+  const rotaterY = 25*mouseX/(cardWidth/2)
+  card.style.transform = `perspective(1000px) rotateX(${rotaterX}deg) rotateY(${rotaterY}deg)`
+}
+
+card.addEventListener('mouseleave', cardMouseLeave)
+function cardMouseLeave(event){
+  card.style.transform = `rotateX(0deg) rotateY(0deg)`
+}
