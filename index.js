@@ -85,10 +85,12 @@ function showMyMeme() {
         memeItems[i].style.display = "none";
       }
     }
-    document.querySelector('#show-my-meme').textContent = "All Meme"
+    document.querySelector('#show-my-meme').textContent = "All Meme";
+    document.querySelector('#edit-meme-button').style.display = "block";
   } else {
     // show all meme, change the button to current user's meme
     showAllMeme();
+    document.querySelector('#edit-meme-button').style.display = "none";
   }
 }
 
@@ -338,6 +340,8 @@ function logOut() {
   // reset nav bar
   document.querySelector('#log-in-button').textContent = "Log in";
   document.querySelector("#log-out-button").style.display = "none";
+  // hide edit button
+  document.querySelector('#edit-meme-button').style.display = "none";
   // reset all meme in meme-container
   showAllMeme();
   // pop out log out message

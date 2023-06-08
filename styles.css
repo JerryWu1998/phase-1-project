@@ -40,6 +40,9 @@ body{
 #log-out-button {
     display: none
 }
+#edit-meme-button {
+    display: none
+}
 
 
 /* Tittle header */
