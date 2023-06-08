@@ -9,6 +9,7 @@ This website is a display of only the greatest memes! Users are able to browse t
 * Adding user authentication
 
 ## Challenges
+* Getting the file upload to work
 
 ## Authors
 * Alexis Boucouvalas
