@@ -1,6 +1,6 @@
-// Create a global variable to check the meme's owner
+// Create global variables to check the meme's owner and the meme you wanna edit
 let currentUser = "";
-
+let currentMemeId;
 
 // Use fetch GET to receive all done memes
 document.addEventListener("DOMContentLoaded", () => {
@@ -23,13 +23,15 @@ function accessMemes(memeArray) {
   memeArray.forEach((singleMeme) => {
     // create single meme div
     const singleMemeContainer = document.createElement('div');
-    singleMemeContainer.textContent = singleMeme.name;
+    const singleMemeName = document.createElement('p')
+    singleMemeName.textContent = singleMeme.name;
     singleMemeContainer.classList.add(singleMeme.owner);
     singleMemeContainer.setAttribute('id', singleMeme.id);
     // create img into div
     const singleMemeImage = document.createElement('img');
     singleMemeImage.src = singleMeme.image;
     // append single meme to DOM
+    singleMemeContainer.append(singleMemeName);
     singleMemeContainer.append(singleMemeImage);
     memeContainer.append(singleMemeContainer);
     // add event listener to each meme (click to show name and big picture)
@@ -42,11 +44,13 @@ function accessMemes(memeArray) {
 
 // After click image, shows detail
 function showDetail(singleMemeData) {
+  // set current meme id as the selected one
+  currentMemeId = singleMemeData.id;
   // update name and image in detail area
   const nameDetail = document.querySelector('#detail-name');
-  nameDetail.textContent = singleMemeData.name;
+  nameDetail.textContent = document.getElementById(currentMemeId).querySelector('p').textContent;
   const imageDetail = document.querySelector('#detail-image');
-  imageDetail.src = singleMemeData.image;
+  imageDetail.src = document.getElementById(currentMemeId).querySelector('img').src;
 }
 
 
@@ -79,8 +83,10 @@ function showMyMeme() {
     for (let i = 0; i < memeItems.length; i++) {
       if (memeItems[i].className === currentUser) {
         memeItems[i].style.display = "";
+        // set the owner's last meme as the current meme
         document.querySelector('#detail-name').textContent = memeItems[i].textContent;
         document.querySelector('#detail-image').src = memeItems[i].getElementsByTagName('img')[0].src;
+        currentMemeId = memeItems[i].id;
       } else {
         memeItems[i].style.display = "none";
       }
@@ -107,7 +113,23 @@ function showAllMeme() {
 
 // Function to rename selected Meme
 function renameMeme() {
-
+  // change name in DOM
+  const newName = document.querySelector('#rename-input').value;
+  const divElement = document.getElementById(currentMemeId);
+  const pElement = divElement.querySelector('p');
+  pElement.textContent = newName;
+  document.querySelector('#detail-name').textContent = newName;
+  document.querySelector('#rename-input').value = "";
+  // change name in db.json
+  fetch(`http://localhost:3000/done-memes/${currentMemeId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: newName
+    })
+  })
 }
 
 
@@ -126,18 +148,18 @@ document.querySelector('#new-meme').addEventListener('submit', (e) => {
   if (currentUser === "") {
     window.alert("For adding meme, you have to log in first.")
   } else {
-    if (e.target.image.files.length === 0  || e.target.name.value === "") {
+    if (e.target.image.files.length === 0 || e.target.name.value === "") {
       window.alert("Please fill out all the forms.")
     } else {
       const reader = new FileReader();
-      reader.onload = function(event) {
+      reader.onload = function (event) {
         const newUploadMeme = {
           name: e.target.name.value,
           image: event.target.result,
           owner: currentUser
         };
         // add meme into the page
-        accessMemes([newUploadMeme])  
+        accessMemes([newUploadMeme])
         window.alert("Add meme successfully.")
         // use fetch POST to add new meme in db.json
         fetch("http://localhost:3000/done-memes", {
