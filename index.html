@@ -16,7 +16,7 @@
   <div id="sign-up-log-in">
     <button id="log-in-button" onclick="logInShow()">Log in</button>
     <button id="sign-up-button" onclick="signUp()">Sign up</button>
-    <button id="log-in-button" onclick="logOut()">Log out</button>
+    <button id="log-out-button" onclick="logOut()">Log out</button>
   </div>
 </div>
 
@@ -48,6 +48,13 @@
   <!-- Selected meme's name -->
   <h2 id="detail-name">Insert Name Here</h2>
 
+  <!-- Buttons for edit meme -->
+  <div id="edit-meme-button">
+    <button onclick="renameMeme()">Rename</button>
+    <button onclick="deleteMeme()">Delete</button>
+    <p></p>
+  </div>
+
   <!-- Big picture of meme -->
   <div id="big-meme-picture">
     <img id="detail-image" src="" />
@@ -70,12 +77,10 @@
   <h2 id="add-new-meme-title">Add New Meme</h2>
   <form id="new-meme">
     <label for="name">Name: </label>
-    <input id="txt-input" type="text" name="name" id="new-name" placeholder="Add a Name"/>
+    <input id="txt-input" type="text" name="name" id="new-name" placeholder="Image Name"/>
     <label for="image">Image: </label>
     <input id="file-input" type="file" name="image" placeholder="Add an Image">
     <!-- <input id="txt-input" type="text" name="image" id="new-image" placeholder="Add an Image"/> -->
-    <label for="description">Description: </label>
-    <input id="txt-input" type="text" name="description" id="new-description" placeholder="Add a Description"/>
     <input id="submit-button" type="submit" value="Upload" />
   </form>
 

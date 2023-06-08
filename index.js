@@ -25,6 +25,8 @@ function accessMemes(memeArray) {
     const singleMemeContainer = document.createElement('div');
     singleMemeContainer.textContent = singleMeme.name;
     singleMemeContainer.classList.add(singleMeme.owner);
+    singleMemeContainer.setAttribute('id', singleMeme.id);
+    // create img into div
     const singleMemeImage = document.createElement('img');
     singleMemeImage.src = singleMeme.image;
     // append single meme to DOM
@@ -77,15 +79,18 @@ function showMyMeme() {
     for (let i = 0; i < memeItems.length; i++) {
       if (memeItems[i].className === currentUser) {
         memeItems[i].style.display = "";
+        document.querySelector('#detail-name').textContent = memeItems[i].textContent;
+        document.querySelector('#detail-image').src = memeItems[i].getElementsByTagName('img')[0].src;
       } else {
         memeItems[i].style.display = "none";
       }
     }
-    document.querySelector('#show-my-meme').textContent = "All Meme"
+    document.querySelector('#show-my-meme').textContent = "All Meme";
+    document.querySelector('#edit-meme-button').style.display = "block";
   } else {
     // show all meme, change the button to current user's meme
     showAllMeme();
-    document.querySelector('#show-my-meme').textContent = "My Meme";
+    document.querySelector('#edit-meme-button').style.display = "none";
   }
 }
 
@@ -96,16 +101,32 @@ function showAllMeme() {
   for (let i = 0; i < memeItems.length; i++) {
     memeItems[i].style.display = "";
   }
+  document.querySelector('#show-my-meme').textContent = "My Meme";
 }
 
 
-// Upload a new meme with name, url and description
+// Function to rename selected Meme
+function renameMeme() {
+
+}
+
+
+// Function to delete selected Meme
+function deleteMeme() {
+
+}
+
+
+
+
+
+// Upload a new meme with name and url
 document.querySelector('#new-meme').addEventListener('submit', (e) => {
   e.preventDefault();
   if (currentUser === "") {
     window.alert("For adding meme, you have to log in first.")
   } else {
-    if (e.target.image.files.length === 0  || e.target.name.value === "" || e.target.description.value === "") {
+    if (e.target.image.files.length === 0  || e.target.name.value === "") {
       window.alert("Please fill out all the forms.")
     } else {
       const reader = new FileReader();
@@ -113,7 +134,6 @@ document.querySelector('#new-meme').addEventListener('submit', (e) => {
         const newUploadMeme = {
           name: e.target.name.value,
           image: event.target.result,
-          description: e.target.description.value,
           owner: currentUser
         };
         // add meme into the page
@@ -233,10 +253,11 @@ function checkLoginInfo(inputUsername, inputPassword) {
       // use for loop to go over all users in db.json
       for (singleUser of usersData) {
         if (inputUsername === singleUser.username && inputPassword === singleUser.password) {
-          // if matched, the login button becomes username, hide the text bar
+          // if matched, the login button becomes username, hide the text bar, show log out
           currentUser = inputUsername;
           document.querySelector('#log-in-button').textContent = "Account: " + currentUser;
           document.querySelector("#log-in").style.display = "none";
+          document.querySelector("#log-out-button").style.display = "block";
           window.alert("You have successfully logged in.");
           break;
         } else if (singleUser === usersData.at(-1)) {
@@ -318,19 +339,17 @@ async function checkUserName(inputUsername) {
 
 // Log out
 function logOut() {
-  if (currentUser === "") {
-    // pop out message if user haven't logged in
-    window.alert("You haven't logged in yet.");
-  } else {
-    // clear current user
-    currentUser = "";
-    // reset log in button
-    document.querySelector('#log-in-button').textContent = "Log in";
-    // reset all meme in meme-container
-    showAllMeme();
-    // pop out log out message
-    window.alert("You logged out successfully.");
-  }
+  // clear current user
+  currentUser = "";
+  // reset nav bar
+  document.querySelector('#log-in-button').textContent = "Log in";
+  document.querySelector("#log-out-button").style.display = "none";
+  // hide edit button
+  document.querySelector('#edit-meme-button').style.display = "none";
+  // reset all meme in meme-container
+  showAllMeme();
+  // pop out log out message
+  window.alert("You logged out successfully.");
 }
 
 
