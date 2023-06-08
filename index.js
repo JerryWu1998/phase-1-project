@@ -90,7 +90,7 @@ function showMyMeme() {
       } else {
         memeItems[i].style.display = "none";
         document.querySelector('#detail-name').textContent = "";
-        document.querySelector('#detail-image').src = "";
+        document.querySelector('#detail-image').src = "./your-meme-here.jpg";
       }
     }
     document.querySelector('#show-my-meme').textContent = "All Meme";
