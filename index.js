@@ -1,6 +1,6 @@
-// Create a global variable to check the meme's owner
+// Create global variables to check the meme's owner and the meme you wanna edit
 let currentUser = "";
-
+let currentMemeId;
 
 // Use fetch GET to receive all done memes
 document.addEventListener("DOMContentLoaded", () => {
@@ -42,6 +42,8 @@ function accessMemes(memeArray) {
 
 // After click image, shows detail
 function showDetail(singleMemeData) {
+  // set current meme id as the selected one
+  currentMemeId = singleMemeData.id;
   // update name and image in detail area
   const nameDetail = document.querySelector('#detail-name');
   nameDetail.textContent = singleMemeData.name;
@@ -79,8 +81,10 @@ function showMyMeme() {
     for (let i = 0; i < memeItems.length; i++) {
       if (memeItems[i].className === currentUser) {
         memeItems[i].style.display = "";
+        // set the owner's last meme as the current meme
         document.querySelector('#detail-name').textContent = memeItems[i].textContent;
         document.querySelector('#detail-image').src = memeItems[i].getElementsByTagName('img')[0].src;
+        currentMemeId = memeItems[i].id;
       } else {
         memeItems[i].style.display = "none";
       }
@@ -107,7 +111,7 @@ function showAllMeme() {
 
 // Function to rename selected Meme
 function renameMeme() {
-
+  console.log(currentMemeId)
 }
 
 
