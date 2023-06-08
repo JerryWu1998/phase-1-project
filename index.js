@@ -105,26 +105,30 @@ document.querySelector('#new-meme').addEventListener('submit', (e) => {
   if (currentUser === "") {
     window.alert("For adding meme, you have to log in first.")
   } else {
-    if (e.target.image.value === "" || e.target.name.value === "" || e.target.description.value === "") {
+    if (e.target.image.files.length === 0  || e.target.name.value === "" || e.target.description.value === "") {
       window.alert("Please fill out all the forms.")
     } else {
-      const newUploadMeme = {
-        name: e.target.name.value,
-        image: e.target.image.value,
-        description: e.target.description.value,
-        owner: currentUser
-      };
-      // use fetch POST to add new meme in db.json
-      fetch("http://localhost:3000/done-memes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUploadMeme)
-      })
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const newUploadMeme = {
+          name: e.target.name.value,
+          image: event.target.result,
+          description: e.target.description.value,
+          owner: currentUser
+        };
         // add meme into the page
-        .then(accessMemes([newUploadMeme]))
-        .then(window.alert("Add meme successfully."))
+        accessMemes([newUploadMeme])  
+        window.alert("Add meme successfully.")
+        // use fetch POST to add new meme in db.json
+        fetch("http://localhost:3000/done-memes", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUploadMeme)
+        })
+      }
+      reader.readAsDataURL(e.target.image.files[0]);
     }
   }
 })
