@@ -83,9 +83,6 @@ function showMyMeme() {
     for (let i = 0; i < memeItems.length; i++) {
       if (memeItems[i].className === currentUser) {
         memeItems[i].style.display = "block";
-        // set the owner's last meme as the current meme
-        document.querySelector('#detail-name').textContent = memeItems[i].textContent;
-        document.querySelector('#detail-image').src = memeItems[i].getElementsByTagName('img')[0].src;
         currentMemeId = memeItems[i].id;
       } else {
         memeItems[i].style.display = "none";
