@@ -121,7 +121,7 @@ function renameMeme() {
     window.alert("Please select a meme.")
   } else {
     // change name in DOM
-    const newName = document.querySelector('#rename-input').value;
+    const newName = document.querySelector('#edit-meme-button').querySelector('input').value;
     if (newName.length < 3) {
       window.alert("Please input a valid name, at least 3 characters.")
     } else {
@@ -130,7 +130,7 @@ function renameMeme() {
       pElement.textContent = newName;
       document.querySelector('#detail-name').textContent = newName;
       // clear the input text bar
-      document.querySelector('#rename-input').value = "";
+      document.querySelector('#edit-meme-button').querySelector('input').value = "";
       window.alert("Changed the name Successfully.");
       // use PATCH to change name in db.json
       fetch(`http://localhost:3000/done-memes/${currentMemeId}`, {
