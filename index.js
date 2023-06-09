@@ -82,13 +82,15 @@ function showMyMeme() {
     let memeItems = document.querySelector('#meme-container').getElementsByTagName("div");
     for (let i = 0; i < memeItems.length; i++) {
       if (memeItems[i].className === currentUser) {
-        memeItems[i].style.display = "";
+        memeItems[i].style.display = "block";
         // set the owner's last meme as the current meme
         document.querySelector('#detail-name').textContent = memeItems[i].textContent;
         document.querySelector('#detail-image').src = memeItems[i].getElementsByTagName('img')[0].src;
         currentMemeId = memeItems[i].id;
       } else {
         memeItems[i].style.display = "none";
+        document.querySelector('#detail-name').textContent = "";
+        document.querySelector('#detail-image').src = "";
       }
     }
     document.querySelector('#show-my-meme').textContent = "All Meme";
@@ -107,6 +109,10 @@ function showAllMeme() {
   for (let i = 0; i < memeItems.length; i++) {
     memeItems[i].style.display = "";
   }
+  document.querySelector('#detail-name').textContent =
+    document.querySelector('#meme-container').querySelector('div').querySelector('p').textContent;
+  document.querySelector('#detail-image').src =
+    document.querySelector('#meme-container').querySelector('div').querySelector('img').src;
   document.querySelector('#show-my-meme').textContent = "My Meme";
 }
 
@@ -397,6 +403,11 @@ function logOut() {
   document.querySelector("#log-out-button").style.display = "none";
   // hide edit button
   document.querySelector('#edit-meme-button').style.display = "none";
+  // reset the meme detail
+  document.querySelector('#detail-name').textContent =
+    document.querySelector('#meme-container').querySelector('div').querySelector('p').textContent;
+  document.querySelector('#detail-image').src =
+    document.querySelector('#meme-container').querySelector('div').querySelector('img').src;
   // reset all meme in meme-container
   showAllMeme();
   // pop out log out message
