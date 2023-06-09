@@ -159,9 +159,8 @@ function deleteMeme() {
       // delete meme in DOM
       document.getElementById(currentMemeId).remove();
       document.querySelector('#detail-name').textContent = "";
-      document.querySelector('#detail-image').src = "";
+      document.querySelector('#detail-image').src = "./your-meme-here.jpg";
       window.alert("Deleted the meme successfully.");
-      console.log(currentMemeId);
       // use DELETE to delete meme in db.json
       fetch(`http://localhost:3000/done-memes/${currentMemeId}`, {
         method: "DELETE",
