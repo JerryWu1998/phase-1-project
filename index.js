@@ -4,7 +4,7 @@ let currentMemeId;
 
 // Use fetch GET to receive all done memes
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("http://localhost:3000/done-memes")
+  fetch("https://meme-museum-backend.onrender.com/done-memes")
     .then(response => response.json())
     .then(data => {
       // call function to access array
@@ -133,7 +133,7 @@ function renameMeme() {
       document.querySelector('#edit-meme-button').querySelector('input').value = "";
       window.alert("Changed the name Successfully.");
       // use PATCH to change name in db.json
-      fetch(`http://localhost:3000/done-memes/${currentMemeId}`, {
+      fetch(`https://meme-museum-backend.onrender.com/done-memes/${currentMemeId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -162,7 +162,7 @@ function deleteMeme() {
       document.querySelector('#detail-image').src = "./your-meme-here.jpg";
       window.alert("Deleted the meme successfully.");
       // use DELETE to delete meme in db.json
-      fetch(`http://localhost:3000/done-memes/${currentMemeId}`, {
+      fetch(`https://meme-museum-backend.onrender.com/done-memes/${currentMemeId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -194,7 +194,7 @@ document.querySelector('#new-meme').addEventListener('submit', (e) => {
         accessMemes([newUploadMeme])
         window.alert("Add meme successfully.")
         // use fetch POST to add new meme in db.json
-        fetch("http://localhost:3000/done-memes", {
+        fetch("https://meme-museum-backend.onrender.com/done-memes", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -210,7 +210,7 @@ document.querySelector('#new-meme').addEventListener('submit', (e) => {
 
 // Use fetch GET to receive all faces
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("http://localhost:3000/memes-creating")
+  fetch("https://meme-museum-backend.onrender.com/memes-creating")
     .then(response => response.json())
     .then(data => {
       // call function to access array
@@ -300,7 +300,7 @@ document.querySelector('#log-in').addEventListener('submit', (e) => {
 // Function that check the username and password
 function checkLoginInfo(inputUsername, inputPassword) {
   // use fetch GET to receive all users info
-  fetch("http://localhost:3000/user-list")
+  fetch("https://meme-museum-backend.onrender.com/user-list")
     .then(response => response.json())
     .then(usersData => {
       // use for loop to go over all users in db.json
@@ -359,7 +359,7 @@ function addSignUpInfo(inputUsername, inputPassword) {
             password: inputPassword
           };
           // use POST to add user data into db.json
-          fetch("http://localhost:3000/user-list", {
+          fetch("https://meme-museum-backend.onrender.com/user-list", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -377,7 +377,7 @@ function addSignUpInfo(inputUsername, inputPassword) {
 
 // Async function will return true if the username already exists
 async function checkUserName(inputUsername) {
-  const response = await fetch("http://localhost:3000/user-list");
+  const response = await fetch("https://meme-museum-backend.onrender.com/user-list");
   const usersData = await response.json();
   // create a array contains all usernames
   const userNamelist = usersData.map(singleUser => singleUser.username);
